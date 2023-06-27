@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play TheCrossing.</tw-noscript></noscript></tw-story>
-<tw-storydata name="TheCrossing" startnode="13" creator="Twine" creator-version="2.6.2" format="Harlowe" format-version="3.3.5" ifid="62310137-5282-4603-9817-D79B7976BE9D" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name=" Door 1" tags="" position="1225,900" size="100,100">//Little Bo Peep
+<tw-storydata name="TheCrossing" startnode="13" creator="Twine" creator-version="2.6.2" format="Harlowe" format-version="3.3.5" ifid="62310137-5282-4603-9817-D79B7976BE9D" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Door 1" tags="" position="1225,900" size="100,100">//Little Bo Peep
 
 Little Bo-Peep has lost her sheep
 and she doesn&#39;t know where to find them.
@@ -38,13 +38,19 @@ who lives down the lane.//
 
 Apple stepped through the door and almost ran into someone. &quot;My goodness,&quot; they exclaimed. &quot;Late //and// clumsy!&quot; A black sheep clad in an emerald green waistcoat stared disapprovingly at her over their wire-rimmed glasses. &quot;We&#39;ve got a busy day ahead of us, special delivery orders and a new batch just came in for processing.&quot; They shoved a clipboard and three bags full of wool into Apple&#39;s arms before ushering her towards the front door. She appeared to be in a wool mill. Fleece soaked in buckets of water lined up along the wall while a machine seemed to be combing through clean fleece. Apple couldn&#39;t even get a word in. &quot;Now, you&#39;ve got the [[master |Master]], the [[dame |Dame]], and the [[little boy |Little Boy]] who lives down the lane. Don&#39;t forget to make them sign for the delivery. We&#39;re on a tight schedule so hurry back.&quot; The front door shut, leaving Apple bewildered on the doorstep. She tried knocking but it would not open. Luckily, the clipboard contained all the information she needed. 
 
-(if: (visited:&quot;Master&quot;) is false) [[back to shop |shop]]</tw-passagedata><tw-passagedata pid="3" name=" Door 3" tags="" position="1300,1200" size="100,100">Hey Diddle Diddle
+(if: (visited:&quot;Master&quot;) is false) [[back to shop |shop]]</tw-passagedata><tw-passagedata pid="3" name=" Door 3" tags="" position="1300,1200" size="100,100">//Hey Diddle Diddle
 
 Hey diddle, diddle.
 The cat and the fiddle.
 The cow jumped over the moon.
 The little dog laughed to see such a sport
-and the dish ran away with the spoon!</tw-passagedata><tw-passagedata pid="4" name=" final door" tags="" position="1150,1200" size="100,100">[[Ending]]</tw-passagedata><tw-passagedata pid="5" name="Bo Peep" tags="" position="1375,750" size="100,100">The weeping noise came from the side of the house. Apple found a large red barn, its doors flung wide open. Crouched in front of the barn was a ball of pink and white fabric that groaned
+and the dish ran away with the spoon!//
+
+The door opened to reveal a lively barn. A cool night breeze drifted through the window. In the hayloft above, a ginger cat rocked out on a fiddle while a cow and dog danced. The music was accompanied with the sound of clinking dishware. Apple immediately joined the group, dancing along. They danced and danced until they ran out of breath, and sat in a circle to chat. The cat was an aspiring musician, travelling from place to place to get her music out, while the rest were residents of the barn, who often entertained passing travellers. The dish and spoon were once abandoned in the barn, but eventually came to consciousness over time. They longed for their own adventure but were to scared to leave the comfort of home. 
+
+&quot;Speaking of dreams, I&#39;ve always wanted to jump over the moon&quot; admitted the cow sheepishly. &quot;You totally could!&quot; barked the dog. &quot;I&#39;ve seen you practicing, you jump so high it&#39;s like you can fly!&quot;
+
+Upon further encouragement, the cow agreed to try and marched to the roof of the barn. Accompanied by the cat&#39;s fiddle music, she took a running start before leaping for the stars. She soared through the sky, almost clearing the moon completely. However, her hoof caught at the very end, knocking the moon out of the sky. It bounced on the ground once, twice, before landing at Apple&#39;s feet and cracking in half, nearly blinding her with its dazzling light. The dog barked out a laugh at this turn of events and the dish slipped out into the night with the spoon amidst the chaos. Apple noticed something sticking out of the moon. It was a silver key. (click: &quot;key&quot;)[(set: $keys to (print: $keys + 1))]</tw-passagedata><tw-passagedata pid="4" name=" final door" tags="" position="1150,1200" size="100,100">[[Ending]]</tw-passagedata><tw-passagedata pid="5" name="Bo Peep" tags="" position="1375,750" size="100,100">The weeping noise came from the side of the house. Apple found a large red barn, its doors flung wide open. Crouched in front of the barn was a ball of pink and white fabric that groaned
 
 &quot;My sheep... my sheep...&quot;
 
@@ -67,7 +73,10 @@ As she settled in for bed that night, she could have sworn she saw the cow jumpi
 
 &quot;What&#39;s behind that door?&quot; asked Apple. 
 
-&quot;If you want to know, you&#39;ll have to unlock it for yourself&quot; answered the cat. &quot;Take a [[look|Hallway 2]] around and you might just find the keys. Collect them all and you shall find out.&quot; With that he vanished, leaving his grin for last.</tw-passagedata><tw-passagedata pid="9" name="Falling" tags="" position="650,1050" size="100,100">Darkness surrounded Apple as she tumbled through the air, spinning round and round. The fall seemed to go on forever. &quot;This must be Alice&#39;s rabbit hole,&quot; she thought to herself. Apple tried to keep track of how much time had passed but kept losing count. 
+&quot;If you want to know, you&#39;ll have to unlock it for yourself&quot; answered the cat. &quot;Take a [[look|Hallway 2]] around and you might just find the keys. Collect them all and you shall find out.&quot; With that he vanished, leaving his grin for last. 
+
+(set: $keys to 0)
+(set: $visited to 0)</tw-passagedata><tw-passagedata pid="9" name="Falling" tags="" position="650,1050" size="100,100">Darkness surrounded Apple as she tumbled through the air, spinning round and round. The fall seemed to go on forever. &quot;This must be Alice&#39;s rabbit hole,&quot; she thought to herself. Apple tried to keep track of how much time had passed but kept losing count. 
 
 &quot;One diddle diddle, two diddle diddle...&quot;
 
@@ -76,7 +85,7 @@ bigger...
 
 &lt;div style=&quot;text-indent: 5em;&quot;&gt; bigger... &lt;/div&gt;
 
-&lt;div style=&quot;text-indent:10em;&quot;&gt;[[BIGGER|Hallway]] &lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="Hallway" tags="" position="800,1050" size="100,100">Apple scrunched her eyes closed in anticipation, only to bounce off something before landing on soft dirt. Dusting herself off, she looked back to see a large mushroom surrounded by a fairy ring at the opening of the hole she came out of. Its butter-yellow glow pulsed gently in the dimness of the dirt cave. Further down Apple could make out the faint outline of a door. The door itself was nondescript, unassuming, a simple wooden door, perhaps made of birch. The doornob was smooth and cold in Apple&#39;s hand as she twisted it. It swung open instantly. Inside was a long and narrow hallway, with plain beige walls and a dark red carpet full of dirt. Apple took a cautious step inside, only to have the door behind her slam shut. 
+&lt;div style=&quot;text-indent:10em;&quot;&gt;[[BIGGER|Hallway]] &lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="Hallway" tags="" position="800,1050" size="100,100">Apple scrunched her eyes closed in anticipation, only to bounce off something before landing on soft dirt. Dusting herself off, she looked back to see a large mushroom surrounded by a fairy ring at the opening of the hole she came out of. Its butter-yellow glow pulsed gently in the dimness of the dirt cave. Further down Apple could make out the faint outline of a door. The door itself was nondescript, unassuming, a simple wooden door, perhaps made of birch. The doornob was smooth and cold in Apple&#39;s hand as she twisted it. It swung open instantly. Inside was a long and narrow hallway, with plain beige walls and a dark red carpet full of dirt. Apple took a cautious step inside, only to have the door behind her slam shut and vanish.
 
 &quot;Welcome&quot; said a voice. Apple twirled round and round to find the source of the voice, only it came from everywhere and nowhere. Dizzy from twirling, Apple fell to the ground. A sharp smile (or was it two?) spun before her eyes as the voice chuckled. The smile sat high above the doorframe at the end of the hallway. Slowly, a yellow pair of eyes appeared, followed by a set of pointed ears, paws, and finally a tail. A large blue cat marked with a swirling pattern grinned at Apple as it flicked its tail in amusement. 
 
@@ -86,9 +95,9 @@ bigger...
 
 &quot;Sorry, you&#39;re right. Your fur is a much nicer colour. Where are we?&quot; 
 
-The cat smiled and shrugged, starting from its massive shoulders and rolling to the tip of its tail. &quot;Nowhere. Anywhere. This is The Crossing. Many have come here but few have stayed. It&#39;s the same with these doors. All except //this// [[one|Large Door]].&quot;</tw-passagedata><tw-passagedata pid="11" name="Hallway 2" tags="" position="1150,1050" size="100,100">Aside from the large door at the end of the hall, there were three other doors. The entrance she had come through had vanished. 
+The cat smiled and shrugged, starting from its massive shoulders and rolling to the tip of its tail. &quot;Nowhere. Anywhere. This is The Crossing. Many have come here but few have stayed. It&#39;s the same with these doors. All except //this// [[one|Large Door]].&quot;</tw-passagedata><tw-passagedata pid="11" name="Hallway 2" tags="" position="1150,1050" size="100,100">Apple went to inspect the doors.
 
-[[The first door | Door 1]] on the left was a flawless steel door the colour of obsidian black that gleamed in the light. In the center of it was a silver knocker in the shape of a sheep&#39;s head. Apple appeared warped in the silver pull bar as she approached it. Had she always been that fluffy? 
+(if: (visited: &quot;Door 1&quot;) is true) [The first door] (else: ) [[The first door |Door 1]] on the left was a flawless steel door the colour of obsidian black that gleamed in the light. In the center of it was a silver knocker in the shape of a sheep&#39;s head. Apple appeared warped in the silver pull bar as she approached it. Had she always been that fluffy? 
 
 [[The door beside it | Door 2]] was a red barn door spattered with mud. In some areas it looked like a cat or dog had walked all over it. In the top right corner was a painted moon, full and bright. 
 
