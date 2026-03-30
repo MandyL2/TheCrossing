@@ -24,25 +24,32 @@ default keys = 0
 define flash = Fade(0.1, 0.0, 0.5, color="#fff")
 define flash_then_shake = MultipleTransition(flash, 0.25, vpunch, 1.0)
 
+init python:
+    def check_keys (narr, you, door, inspected):
+        if inspected == False:
+            renpy.say(n,narr)
+            renpy.say(y,you)
+            renpy.jump(door)
+        else:
+            n("No, I've already gone through this door.")
+            renpy.jump("doors")
+
 # The game starts here.
 
 label start:
-
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-
     scene bg room with fade
-    "Tomorrow is the day. Countless hours at the studio, blood, sweat, and tears have led up to this."
-    "Ever since you were a child, you’ve loved to dance. After starting middle school, you finally got your parents to sign you up for dance classes."
-    "You were never that great at it, but tomorrow will be your chance to prove yourself at your first dance competition."
-    "You’re sure you’re ready, but more practice wouldn’t hurt, would it?"
+
+    n "Tomorrow is the day. Countless hours at the studio, blood, sweat, and tears have led up to this."
+    n "Ever since you were a child, you’ve loved to dance. After starting middle school, you finally got your parents to sign you up for dance classes."
+    n "You were never that great at it, but tomorrow will be your chance to prove yourself at your first dance competition."
+    n "You’re sure you’re ready, but more practice wouldn’t hurt, would it?"
 
     show bg tennis court
-    "After wandering the woods behind your house, you come across an abandoned tennis court. Its net is riddled with large holes, and the lines around the court have significantly faded."
-    "It may be a little rough, but it’s still a large and flat area — a perfect stage."
-    "Near the edge of the court is an old well. Its pulley is nowhere to be seen, most likely rotted away with age."
-    "Looking down into the well, all you see is pitch black. You drop a few pebbles down it, mimicking one of your favourite stories, but never hear a splash."
+
+    n "After wandering the woods behind your house, you come across an abandoned tennis court. Its net is riddled with large holes, and the lines around the court have significantly faded."
+    n "It may be a little rough, but it’s still a large and flat area — a perfect stage."
+    n "Near the edge of the court is an old well. Its pulley is nowhere to be seen, most likely rotted away with age."
+    n "Looking down into the well, all you see is pitch black. You drop a few pebbles down it, mimicking one of your favourite stories, but never hear a splash."
 
     menu:
         ". . ."
@@ -65,10 +72,10 @@ label stay_and_practice:
     n "You’ll investigate the well on your break. But first, dance. You move back to the court and begin your routine. As you dance, you begin to feel dizzy and lose your balance."
     n "Not realizing how close you are to the well, you fall right in!"
     n "Darkness surrounds you as you tumble through the air, spinning round and round. The fall seems to go on forever."
-    y "{cps=30}It's like Alice's rabbit hole...{/cps}"
+    y "{cps=30}How deep does this hole go...{/cps}"
     n "You try to keep track of how much time has passed, but keep losing count."
     y "{cps=30}One Mississippi, two Mississippi...{/cps}"
-    n "Though it was bright and sunny today, you look up(?) to see a star-filled sky. Looking down, a faint light is beginning to grow."
+    n "Though it was bright and sunny today, you look up to see a star-filled sky. Looking down, a faint light is beginning to grow."
     n "It's getting"
     n "{cps=20}bigger{/cps}"
     n "{cps=15}bigger...{/cps}"
@@ -82,23 +89,23 @@ label stay_and_practice:
 
     show bg mushrooms with fade
 
-    n "Feeling along what must be dirt walls, your eyes are drawn to a soft light in an otherwise dark cave."
-    "Under the opening of the hole you dropped out of is a large mushroom surrounded by a fairy ring. Its gently pulsing light is entrancing..."
-    "The frantic scuttle of limbs behind you breaks you out of your trance. Whirling around, you make out the faint outline of a door further down the cave."
-    "It is nondescript, unassuming. A simple wooden door, perhaps made of birch."
-    "The doorknob feels smooth and cold in your hand as you twist it. The door swings open instantly."
+    n "Feeling along what must be dirt walls, your eyes are drawn to a soft light in the otherwise dark cave."
+    n "Under the opening of the hole you dropped out of is a large mushroom surrounded by a fairy ring. Its gently pulsing light is entrancing..."
+    n "The scuttle of limbs behind you breaks you out of your trance. Whirling around, you make out the faint outline of a door further down the cave."
+    n "It is nondescript, unassuming. A simple wooden door, perhaps made of birch."
+    n "The doorknob feels smooth and cold in your hand as you twist it. The door swings open instantly."
 
     show bg hallway
 
     n "As you step forward, a long and narrow hallway stretches out before you, with plain beige walls and a dark red carpet full of dirt."
-    "The door slams shut behind you and vanishes."
+    n "The door slams shut behind you and vanishes."
 
     with hpunch
     
     u "{w}Welcome."
     n "You spin around wildly, trying to locate the source of the voice, except it comes from everywhere and nowhere, echoing through the hall. You become dizzy and fall to the ground."
-    "A sharp smile (or was it two?) spins before your eyes as you try to regain your bearings. The smile sits high above the doorframe at the end of the hall."
-    "Slowly, a yellow pair of eyes appears, followed by a set of pointed ears, massive paws, and finally a tail. A large blue cat marked with swirling patterns grins at you as it flicks its tail in amusement."
+    n "A sharp smile (or was it two?) spins before your eyes as you try to regain your bearings. The smile sits high above the doorframe at the end of the hall."
+    n "Slowly, a yellow pair of eyes appears, followed by a set of pointed ears, massive paws, and finally a tail. A large blue cat marked with swirling patterns grins at you as it flicks its tail in amusement."
 
     show cat smile
 
@@ -107,12 +114,16 @@ label stay_and_practice:
     show cat upset
 
     c "Not {i}the{/i} Cheshire cat, but {i}a{/i} Cheshire cat. How could you mistake us? We’re not even the same colour."
-    y "Sorry, you’re right. Your fur is a much nicer colour. Where is this?"
+    y "Sorry, you’re right. Your fur is a much nicer colour. What's your name? I'm Apple."
+    c "Cats don't have names."
+    y "No?"
+    c "No."
+    y "Okaaay, then what's this place called?"
 
     show cat smile
 
-    c "Nowhere. Anywhere. This is The Crossroads."
-    c "Many have come here, seeking deals, an escape, an adventure. The doors are never the same, all except for this one."
+    c "This is The Crossroads. A place that is neither here nor there."
+    c "Many have come seeking something: to make deals, an escape, an adventure. The doors are never the same, all except for this one."
 
     show final door
 
@@ -120,7 +131,7 @@ label stay_and_practice:
     c "It is said that those who unlock this door can walk into a reality of their choosing."
     c "It grants wishes, in a way."
     y "And where would I be able to find the keys?"
-    c "Take a look around and you might just find them... If something else doesn't find you first."
+    c "Take a look around and you might just find them... If you survive long enough."
     
     hide cat smile #fade out 
 
@@ -136,55 +147,16 @@ label hall:
             jump true_ending
     jump doors
 
-
-init python:
-    def check_keys (narr, you, door, inspected):
-        if inspected == False:
-            renpy.say(n,narr)
-            renpy.say(y,you)
-            renpy.jump(door)
-        else:
-            n("No, I've already gone through this door.")
-            renpy.jump("doors")
-
-
 label doors:
     menu:
         "Door 1":
-            $desc = ["The first door on the left is white, dotted with pink polka-dots. White lace curtains hang from the doorframe, parted in the middle and tied with pink silk bows. Painted in the center of the door is a baby-blue shepherd’s crook.","Very cute, very demure."]
+            $desc = ["The door on the left is white, dotted with pink polka-dots. White lace curtains hang from the doorframe, parted in the middle and tied with pink silk bows. Painted in the center of the door is a baby-blue shepherd’s crook.","Very cute, very demure."]
             $check_keys(desc[0], desc[1], "little_bo_peep", globals()['p_inspected'])
 
         "Door 2": 
-            $desc = ["The door opposite to it is a flawless steel, the colour of obsidian black that gleams in the light. In the centre of it is a silver knocker in the shape of a sheep's head. As you approach the door, your reflection in the silver pull bar warps.", "Sick knocker. But why does my reflection look fluffy..."]
+            $desc = ["The door on the right is a flawless steel, the colour of obsidian black that gleams in the light. In the centre of it is a silver knocker in the shape of a sheep's head. As you approach the door, your reflection in the silver pull bar warps.", "Sick knocker. But why does my reflection look fluffy..."]
             $check_keys(desc[0], desc[1], "black_sheep", globals()['b_inspected'])
     
-
-label true_ending:
-    n "Digging into your pockets, you feel two keys clink together and pull them out. With the bone key and the black sheep’s key in hand, you approach the final door."
-    show cat smile
-    c "Congratulations. Are you ready to unlock it?"
-    menu:
-        "Ready as I'll ever be.":
-            pass
-    
-    n "You steel yourself before sliding the bone key into the first lock. It feels fragile in your hand, and you turn it with care."
-    n "{cps=40}{i}Click.{/i}{/cps}"
-    n "The ball of wool on the black sheep’s key tickles your hand as you insert it into the second lock and turn. "
-    n "{cps=40}{i}Click.{/i}{/cps}" #(animate door opening). 
-    n "Only darkness lies beyond the door, silent and still."
-    c "What reality will you wish for?"
-    show mc determined
-    y "One where I’m the best dancer to ever live. I {i}will{/i} win that competition, and I’m gonna blow everyone’s socks off."
-    y "…And a reality where there’s a little bit of magic all around."
-
-    show bg tennis court with fade
-
-    n "You wake up sprawled on your back. The sun has begun to set, casting an orange glow across the sky. Sitting up, you realize you are back on the tennis court."
-    y "Was it all a dream?"
-    n "You head home, thinking about that strange dream."
-    n "Later that night, as you drift off to sleep, the crescent moon transforms into a sharp smile, and a pair of yellow eyes wink at you."
-    centered "{b}THE END{/b}"
-    return
 
 label little_bo_peep:
     with fade
@@ -219,14 +191,14 @@ label little_bo_peep:
 
         "Follow the sound":
             $ check_house = False
-            n "Following the sound, you come across a small cottage"
+            n "Following the sound, you come across a small cottage."
 
     show bg barn
     
     if check_house:
-        n "Unlike the depressing log cabin,"
-    
-    n "The cottage looks bright and cheerful. Its walls are a pale pink, with minimal grime."
+        n "Unlike the depressing log cabin, the cottage looks bright and cheerful. Its walls are a pale pink, with minimal grime."
+    else:
+        n "The cottage looks bright and cheerful. Its walls are a pale pink, with minimal grime."
     n "Pink polka-dotted curtains with white lace trim frame the windows. Beneath the windowsills are flowerbeds with red spider lilies in full bloom."
     n "Looming behind the cottage is a large red barn. The weeping noise gets louder as you approach the barn. The doors were flung wide open, the hinges of their lock smashed."
     n "Crouched in front of the barn is a ball of pink and white fabric."
@@ -244,7 +216,7 @@ label little_bo_peep:
     u "The Huntsman must have let them out."
 
     menu:
-        "Leave them alone":
+        "They'll be okay.":
             pass
         "The Huntsman?":
             jump bp_bad_end
@@ -297,7 +269,7 @@ label little_bo_peep:
     show bo peep happy
     
     p "They're back!!!"
-    p "I guess you guys have found something else to eat, huh? {cps=25}I almost had a yummy treat for you.{/cps} This is my new friend Apple! Let’s get you guys back to the barn."
+    p "I guess you guys have found something else to eat, huh? {cps=25}I almost had a yummy treat for you.{/cps} {w} This is my new friend Apple! Let’s get you guys back home."
     n "Bo Peep herds her sheep back to the barn."
     p "Can you please watch over them while I find a new padlock?"
     y "Sure."
@@ -364,7 +336,7 @@ label black_sheep:
 
     u "Goodness! Late {i}and{/i} clumsy! We’ve got a busy day ahead of us, special delivery orders and a new batch of wool just came in for processing."
     y "Wha—"
-    "The ram shoves a clipboard and three bags full of wool into your arms before ushering you towards the door."
+    n "The ram shoves a clipboard and three bags full of wool into your arms before ushering you towards the door."
     u "Now, there’s The Master, The Dame, and The Little Boy who lives down the lane."
     u "Don’t forget to make them sign for the delivery. We’ve been getting complaints lately about customers not receiving their orders."
     y "But I—"
@@ -404,13 +376,13 @@ label black_sheep:
 label the_master:
     show bg masters house
     
-    n "You walk out the front door and into a garden."
+    n "You walk out the door and into a garden."
     y "Huh?"
-    "Swivelling around, you look back at the door you came out of and see a small shed."
+    n "Swivelling around, you look back at the door you came out of and see a small shed."
     y "Uhh, okay..."
-    "The garden is filled with drooping flowers. Upon closer inspection, you realize the flowers are lifelike wax sculptures partially melted by the sun."
-    "Connected to the garden is a large mansion, its full height diminished by melted rooftops. The walls are streaked with dried globs of wax."
-    "Circling around to the front of the mansion, you spot a plaque in the melted remains of what looks like a mailbox."
+    n "The garden is filled with drooping flowers. Upon closer inspection, you realize the flowers are lifelike wax sculptures partially melted by the sun."
+    n "Connected to the garden is a large mansion, its full height diminished by melted rooftops. The walls are streaked with dried globs of wax."
+    n "Circling around to the front of the mansion, you spot a plaque in the melted remains of what looks like a mailbox."
     centered "The Master"
     y "Master of what?"
     n "There's a flicker of movement in the corner of your eye. At the entrance, a very large bee is trying to smooth out the globs of wax."
@@ -501,23 +473,23 @@ label the_master:
     
 label the_dame:
     show bg parlour
-    $ aggression = 0
+    $ tarts = False
     
     n "You walk out the front door and into a parlour. It's decorated red and black, with a checkered floor and velvet chairs."
-    n "Sunlight streams in through the heavy black curtains parted in two, illuminating the room. Decorating the walls are framed paintings of a stern-faced woman, most likely the lady of the house."
+    n "Sunlight streams in through the heavy black curtains parted in two, illuminating the room. Decorating the walls are framed paintings of a regal-looking woman, most likely the lady of the house."
     n "On the coffee table is a tray of tarts."
 
     menu:
         y "Ooh..."
         "Eat the tarts":
             y "Maybe just a little bite..."
-            $ aggression += 1
+            $ tarts = True
             
             show mc bruh
 
-            y "This tastes like dirt..."
+            y "{i}(This tastes like dirt...){/i}"
         "Don't eat the tarts":
-            pass    
+            pass
 
     n "A voice crackles to life and echoes throughout the room."
     u "Announcing the arrival of The Dame!"
@@ -531,7 +503,7 @@ label the_dame:
             show mc shocked
 
             y "This is a misunderstanding. I don't even know how I got here!"
-            if aggression > 0:
+            if tarts:
                 d "Liar! You ate my tarts. You must be a thief in disguise!"
             else:
                 d "What, are you telling me you just teleported in here?"
@@ -569,24 +541,27 @@ label the_dame:
             show mc shocked
 
             y "{cps=40}Waitwaitwait!{/cps} I'm just here to make a delivery!"
-            if aggression > 0:
+            if tarts:
                 d "Liar! You ate my tarts. You must be a thief in disguise!"
             else:
                 d "Prove it then!"
 
             y "I've got your wool right here! And I'm definitely not wearing this hat for fun."
-            d "Hmm, that {i}is{/i} Mr Ramsey’s uniform. I think it’s quite cute. I apologize for the accusation. Please help yourself to some tarts."
-            y "Sure, thanks."
+            d "Hmm, that {i}is{/i} Mr Ramsey’s uniform. I think it’s quite cute. I apologize for the accusation. "
+            if tarts == False:
+                extend "Please help yourself to some tarts."
+                y "Sure, thanks."
 
-            show mc bruh
+                show mc bruh
 
-            y "{i}(This tastes like dirt...){/i}"
-            d "Is it not to your liking?" 
+                y "{i}(This tastes like dirt...){/i}"
+                d "Is it not to your liking?" 
 
-            show mc smile
+                show mc smile
 
-            y "Oh no! No, it's great!"
-            d "Hm, how did you get in here?"
+                y "Oh no! No, it's great!"
+            
+            d "How did you get in here?"
 
             menu:
                 "Tell the truth":
@@ -634,7 +609,7 @@ label the_dame:
 label little_boy:
     show bg treehouse
 
-    n "You step out the front door and onto the balcony of a treehouse. From there, you can see the wool factory a hop, skip, and twirl away down the lane."
+    n "You step out the door and onto the balcony of a treehouse. From there, you can see the wool factory a hop, skip, and twirl away down the lane."
     n "Under the shade of leaves sits a little boy at a picnic table. An assortment of finger foods is spread out before him."
     n "The table is set for three other guests, each with their own teacup and saucer."
     y "Wool delivery!"
@@ -690,10 +665,7 @@ label little_boy:
     b "Just for a little bit? No one else has shown up."
     y "I'm really sorry, but I need to go."
     n "You begin to turn away from the table, but whip back when you hear the boy screech behind you—"
-    
-    with hpunch
-    
-    b "PLEASE! I'VE BEEN HERE FOR {i}SO LONG!{/i} {cps=18}{size=+10}{b}I JUST NEED SOMEONE TO TAKE MY PLACE.{/b}{/size}{/cps}"
+    b "PLEASE! I'VE BEEN HERE FOR {i}SO LONG!{/i} {cps=18}{size=+10}{b}I JUST NEED SOMEONE TO TAKE MY PLACE.{/b}{/size}{/cps}"  with hpunch
     #flicker sprite
     y "Yeahh... Time to get out of here."
     n "You hurry to the balcony door while the boy continues to cry and screech."
@@ -713,7 +685,7 @@ label little_boy:
 label wool_mill:
     show bg wool mill
     
-    n "You find yourself back at the wool mill, ready to report back. Mr Ramsey looks up from their station and calls out to you."
+    n "You find yourself back at the wool mill, ready to report back. Mr Ramsey looks up from his station and calls out to you."
     
     show ramsey neutral
     
@@ -726,5 +698,30 @@ label wool_mill:
     $ b_inspected = True
     jump hall
 
+label true_ending:
+    n "Digging into your pockets, you feel two keys clink together and pull them out. With the bone key and Mr Ramsey’s key in hand, you approach the final door."
+    show cat smile
+    c "Congratulations. Are you ready to unlock it?"
+    menu:
+        "Ready.":
+            pass
+    
+    n "You steel yourself before sliding the bone key into the first lock. It feels fragile in your hand, and you turn it with care."
+    n "{cps=40}{i}Click.{/i}{/cps}"
+    n "The ball of wool on the black sheep’s key tickles your hand as you insert it into the second lock and turn. "
+    n "{cps=40}{i}Click.{/i}{/cps}" #(animate door opening). 
+    n "Only darkness lies beyond the door, silent and still."
+    c "What reality will you wish for?"
+    show mc determined
+    y "One where I’m the best dancer to ever live. I {i}will{/i} win that competition, and I’m gonna blow everyone’s socks off."
+    y "…And a reality where there’s a little bit of magic all around."
+
+    show bg tennis court with fade
+
+    n "You wake up sprawled on your back. The sun has begun to set, casting an orange glow across the sky. Sitting up, you realize you are back on the tennis court."
+    y "Was it all a dream?"
+    n "You head home, thinking about that strange dream."
+    n "Later that night, as you drift off to sleep, the crescent moon transforms into a sharp smile, and a pair of yellow eyes wink at you."
+    centered "{b}THE END{/b}"
     # This ends the game.
     return
