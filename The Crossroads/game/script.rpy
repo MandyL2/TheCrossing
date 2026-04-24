@@ -3,15 +3,28 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define y = Character("You")
+define y = Character("You", image="apple")
+image side apple = LayeredImageProxy("apple")
+
 define n = Character('') #narration
 define u = Character('???') #unknown 
-define c = Character('Cheshire')
-define r = Character('Ram')
+define c = Character('Cheshire', image="cheshire")
+# image cheshire_cat = "cheshire" 
+define r = Character('Ramsey')
+# image ramsey = "images/ram/ram.png"
 define m = Character('The Master')
+# image bee = "images/master/master.png"
 define d = Character('The Dame')
+# image dame = "images/dame/dame.png"
 define b = Character('Little Boy')
-define p = Character('Bo Peep')
+# image boy = "images/boy/boy.png"
+define p = Character('Bo Peep', image="bopeep")
+# image bopeep = "bopeep"
+
+transform double_size:
+    # ypos 2.0
+    xalign 0.5
+    zoom 1.5
 
 default bee_bad_end = None
 default bee_delivered = False
@@ -60,7 +73,7 @@ label start:
 
 label boring_end:
     n "Thinking back to your favourite story, you warily back away from the well."
-    y "No way, I've played these games before!!"
+    y bmad mshout"No way, I've played these games before!!"
     n "This is not the time for adventure. There is too much at stake tomorrow, and you can’t risk any accidents."
     n "You turn back to look for a better place to practice."
     n "In the distance, a pair of yellow eyes narrow to slits as they stare after you, its sharp smile turning into a frown."
@@ -68,14 +81,14 @@ label boring_end:
     return
 
 label stay_and_practice:
-    y "Interesting..."
+    y braised eside mmumble "Interesting..."
     n "You’ll investigate the well on your break. But first, dance. You move back to the court and begin your routine. As you dance, you begin to feel dizzy and lose your balance."
     n "Not realizing how close you are to the well, you fall right in!"
     n "Darkness surrounds you as you tumble through the air, spinning round and round. The fall seems to go on forever."
     y "{cps=30}How deep does this hole go...{/cps}"
     n "You try to keep track of how much time has passed, but keep losing count."
-    y "{cps=30}One Mississippi, two Mississippi...{/cps}"
-    n "Though it was bright and sunny today, you look up to see a star-filled sky. Looking down, a faint light is beginning to grow."
+    y bneutral eneutral mneutral "{cps=30}One Mississippi, two Mississippi...{/cps}"
+    n "Though it was bright and sunny today, you look up to see a star—filled sky. Looking down, a faint light is beginning to grow."
     n "It's getting"
     n "{cps=20}bigger{/cps}"
     n "{cps=15}bigger...{/cps}"
@@ -85,7 +98,7 @@ label stay_and_practice:
     with vpunch
 
     n "You scrunch your eyes shut in anticipation, only to bounce off something and land on soft dirt."
-    y "Oof..."
+    y bsad eclosed mfrown "Oof..."
 
     show bg mushrooms with fade
 
@@ -107,38 +120,44 @@ label stay_and_practice:
     n "A sharp smile (or was it two?) spins before your eyes as you try to regain your bearings. The smile sits high above the doorframe at the end of the hall."
     n "Slowly, a yellow pair of eyes appears, followed by a set of pointed ears, massive paws, and finally a tail. A large blue cat marked with swirling patterns grins at you as it flicks its tail in amusement."
 
-    show cat smile
+    show cheshire at truecenter 
 
-    y "I know you. You're the Cheshire cat, right? The one from Wonderland?"
+    y bneutral eneutral mopen "I know you. You're the Cheshire cat, right? The one from Wonderland?"
 
-    show cat upset
+    show cheshire eamad emad mfrown
 
     c "Not {i}the{/i} Cheshire cat, but {i}a{/i} Cheshire cat. How could you mistake us? We’re not even the same colour."
-    y "Sorry, you’re right. Your fur is a much nicer colour. What's your name? I'm Apple."
+    y braised eclosed "Sorry, you’re right. Your fur is a much nicer colour. What's your name?"
+
+    show cheshire eaneutral enarrow
     c "Cats don't have names."
-    y "No?"
+    y eneutral "No?"
     c "No."
-    y "Okaaay, then what's this place called?"
+    y bsad "Okaaay, well I'm Apple. What is this place?"
 
-    show cat smile
-
+    show cheshire eneutral mgrin
     c "This is The Crossroads. A place that is neither here nor there."
+    show cheshire enarrow
     c "Many have come seeking something: to make deals, an escape, an adventure. The doors are never the same, all except for this one."
 
-    show final door
+    # show final door
 
-    y "What's with that one?"
+    y mmumble "Is that the exit? I really need to go home and practice."
+    extend mshout "I have a dance competition tomorrow!"
+    show cheshire eamad mfrown
     c "It is said that those who unlock this door can walk into a reality of their choosing."
+    show cheshire eaneutral mgrin
     c "It grants wishes, in a way."
-    y "And where would I be able to find the keys?"
+    y braised mmumble "And where would I be able to find the keys?"
+    show cheshire enarrow
     c "Take a look around and you might just find them... If you survive long enough."
     
-    hide cat smile #fade out 
+    hide cheshire #smile #fade out 
 
-    y "Well that was helpful."
+    y bmad eside mfrown "Well that was helpful."
 
 label hall:
-    show bg hallway
+    scene bg hallway
     if keys == 0:
         n "You go to inspect the doors."
     elif keys >= 1:
@@ -165,7 +184,7 @@ label little_bo_peep:
     "{cps=20}{i} Leave them alone, {/i}
     \n{i} and they'll come home {/i}{/cps}"
     "{cps=20}{i} wagging their tails behind them. {/cps}{/i}"
-    show bg grass field
+    scene bg grass field
 
     n "A gentle breeze caresses your cheek as you open the door. Your eyes are greeted with the sight of lush green fields dotted with wild flowers."
     y "This is a great place to dance."
@@ -179,14 +198,15 @@ label little_bo_peep:
             show bg house
             n "The house is more like a log cabin, made of deep red wood with a blue painted roof. There is a small set of stairs that leads up to a porch overlooking the fields."
             n "In the corner of the porch is a rocking chair covered in knitted quilts. You take a seat only to find that the chair is bolted to the porch, making it completely immobile."
-            y "What kind of psychopath does that...?"
+            y bsad mfrown "What kind of psychopath does that...?"
             n "You get up and peek through the window. Inside is an unlit fireplace, still smouldering from being put out. "
             n "Lying before it in the center of the room is a sheepskin rug, head and all. Above the fireplace is an assortment of stuffed sheep heads."
             n "Some look peaceful, while others are frozen mid-bleat, as if crying out. One in particular seems to be staring straight at you through the window."
            
             show sheep head
-            
-            y "Okay, now {i}that's{/i} psychopathic."
+            hide sheep head 
+
+            y eshocked "Okay, now {i}that's{/i} psychopathic."
             n "The sheep's piercing gaze is unsettling. Tearing your eyes away, you decide to turn back."
 
         "Follow the sound":
@@ -203,16 +223,19 @@ label little_bo_peep:
     n "Looming behind the cottage is a large red barn. The weeping noise gets louder as you approach the barn. The doors were flung wide open, the hinges of their lock smashed."
     n "Crouched in front of the barn is a ball of pink and white fabric."
     u "My sheep... my sheep..."
-    y "That must be the source of the weeping."
+    y bneutral eside mmumble "That must be the source of the weeping."
     n "Cautiously approaching the ball, you call out."
-    y "Are you okay?"
+    y bsad eneutral mopen "Are you okay?"
 
-    show bo peep sad
+    show bopeep bsad esquint msad
 
     n "The ball of fabric uncurls to reveal the face of a young girl. Her hazel eyes glisten with tears as she peers out from underneath her pink bonnet."
+    show bopeep mshout
     u "I've lost my sheep and don't know where to find them!"
     u "They're gone!" 
+    show bopeep esad
     u "Gone!"
+    show bopeep bmad esquint mshout
     u "The Huntsman must have let them out."
 
     menu:
@@ -220,59 +243,68 @@ label little_bo_peep:
             pass
         "The Huntsman?":
             jump bp_bad_end
-
-    y "Don't worry, they can't have gone too far. Let's wait a bit; I'm sure they'll come back."
-    y "How about I teach you my favourite dance in the meantime? Let's go over here."
+    show bopeep msad
+    y eclosed mneutral "Don't worry, they can't have gone too far. Let's wait a bit; I'm sure they'll come back."
+    y bhappy eneutral mopen "How about I teach you my favourite dance in the meantime? Let's go over here."
     n "You herd the girl under the shade of some apple trees, trying to keep her spirits up."
-    y "Your pretty dress might make it harder to move, so I’ll go easy on you."
-    y "What’s your name? My friends call me Apple, like the fruit!"
+    y eclosed "Your pretty dress might make it harder to move, so I’ll go easy on you."
+    y mgrin "What’s your name? My friends call me Apple, like the fruit!"
     n "You jump up and grab an apple from a low-hanging branch. Just then, the tree makes an ear-piercing screech."
-    
-    show mc shock
-    
-    y "!!"
+    y bsad eshocked mshout "!!"
+    show bopeep bsad eclosed mneutral
     u "They don't like that. Would {i}you{/i} like it if someone ripped off one of your limbs?"
-    y "..."
+    y eclosed mneutral "..."
+
+    show bopeep bneutral eneutral mneutral
     p "I'm Bo Peep."
     n "You drop the apple and roll it to the base of the tree."
-    y "...Sorry, I was a little hungry."
+    y mopen "...Sorry, I was a little hungry."
+
+    show bopeep bsad esquint msad
     p "Oh, my poor sheep. They must be getting hungry, too! I was supposed to take care of them—"
+    show bopeep esad mshout
     p "where have they gone!"
-    y "Don't you ever take time for yourself? Who takes care of you?"
+    y eneutral mmumble"Don't you ever take time for yourself? Who takes care of you?"
+    show bopeep msad
     p "The sheep always come first."
-    y "That won’t do! You’ve got to relax a bit first, then I’ll help you look for your sheep."
-    y "Follow my lead."
+
+    y bmad mfrown "That won’t do! You’ve got to relax a bit first, then I’ll help you look for your sheep."
+    y mneutral "Follow my lead."
     n "You take Bo Peep's hand and twirl her a few times, her dress fanning out around her."
     
-    show bo peep happy
-    
+    show bopeep bhappy eclosed msmile
     p "Hehe!"    
-    y "Now that we’ve loosened up a bit, let’s get started. First, you do this…"
+    y bhappy eclosed mwidesmile "Now that we’ve loosened up a bit, let’s get started. First, you do this…"
     n "Striking a pose, you look at Bo Peep to follow. After teaching her the steps, you begin to count."
-    y "One, two, three, four..."
+    y eneutral mopen "One, two, three, four..."
+
+    show bopeep eneutral
     p "How are we supposed to dance without music?"
-    y "Hmmm..."
-    y "!"
-    y "Hmm hm..."
+    y bneutral eside mfrown "Hmmm..."
+    y bhappy eshocked mwidesmile "!"
+    y eclosed mneutral "Hmm hm..."
     n "Bo Peep picks up your tune, and the two of you twirl and dance until the sun sets."
     
     with fade
-    show bo peep happy
-    
+    show bopeep bhappy eclosed msmile
     p "That was the most fun I've had in a while!"
    
-    show bo peep neutral
-   
+    show bopeep bneutral eneutral mneutral
     p "Thank you."
     n "Just then, round shapes appear on the horizon. As the blobs get closer, you realize it is a herd of sheep."
     
-    show bo peep happy
-    
+    show bopeep bhappy eclosed msmile
     p "They're back!!!"
-    p "I guess you guys have found something else to eat, huh? {cps=25}I almost had a yummy treat for you.{/cps} {w} This is my new friend Apple! Let’s get you guys back home."
+    show bopeep mneutral
+    p "I guess you guys have found something else to eat, huh? "
+    extend show bopeep esquint "{cps=25}I almost had a yummy treat for you.{/cps}"
+    extend show bopeep eclosed msmile " This is my new friend Apple! Let’s get you guys back home."
+    hide bopeep
     n "Bo Peep herds her sheep back to the barn."
+    show bopeep
     p "Can you please watch over them while I find a new padlock?"
-    y "Sure."
+    y mopen "Sure."
+    hide bopeep
     n "There’s something peculiar about these sheep, but you can’t put your finger on it."
     n "The one closest to you seems to be chewing on something."
     y "What are you eating, bud?"
@@ -280,9 +312,10 @@ label little_bo_peep:
     show sheep stare
    
     n "The sheep spits something out, and a colourful feather floats out alongside some small white objects."
+    hide sheep stare
     n "The sheep lets out a loud bleat and yawns, revealing a row of razor-sharp teeth before walking away. Upon closer inspection, you realize it is a pile of bones."
     n "One of them has been chewed into the shape of a key."
-    centered "Obtained key"
+    call screen bone_key with Dissolve(.5)
     $ keys += 1
     $ p_inspected = True
     p "Apple, could you give me a hand in here?"
@@ -291,24 +324,32 @@ label little_bo_peep:
         jump hall
 
 label bp_bad_end:
-    y "The Huntsman?"
+    y braised eside mfrown "The Huntsman?"
+
+    show bopeep bmad esquint msad
     u "He lives down the road and likes to hunt my sheep for sport."
     
-    show bo peep angry
-    
+    show bopeep mshout
     u "His cabin is filled with his trophies!"
     u "I have to find him before he does!" 
+
+    show bopeep bsad eneutral
     p "Will you help me? What's your name? I'm Bo Peep."
-    y "Of course! My friends call me Apple."
+    y bhappy eclosed mgrin "Of course! My friends call me Apple."
+
+    show bopeep bhappy eclosed msmile
     p "Thanks, Apple. Oh, let's check near those apple trees first!"
-    y "These apples look delicious. The sheep must love eating them."
+    y bneutral eneutral mneutral "These apples look delicious. The sheep must love eating them."
+    
+    show bopeep bneutral eneutral mneutral
     p "Yes, it's always a treat for them. But ever since the Huntsman, they've developed a taste for humans."
+    
+    show bopeep esquint
     p "{cps=20}He deserved it anyway.{/cps}"
-    
-    show mc shocked
-    
-    y "...What?"
+    y bhappy eshocked mmumble "...What?"
     n "Bo Peep lets out a sharp whistle, and a herd of sheep rushes out of the underbrush to surround you."
+    
+    show bopeep bsad eclosed mneutral
     p "Sorry!"
     n "The sheep begin bleating loudly, overwhelming your senses."
     n "As they close in on you, the last thing you see are rows of razor-sharp teeth."
@@ -320,7 +361,8 @@ label bp_bad_end:
     return
 
 label black_sheep:
-    show bg wool mill with fade 
+    scene bg wool mill 
+    with fade 
 
     n "{cps=20}{i}Baa, baa black sheep{/i} 
     \n{i}Have you any wool?{/i}{/cps}"
@@ -342,17 +384,17 @@ label black_sheep:
     y "But I—"
     u "Shush!"
     
-    show ramsey stare
+    show ramsey #stare
     
     u "{cps=5}...{/cps}{cps=20}Something looks off.{/cps}"
     y "That's what I've been trying to tell you—"
     u "Ah! Why aren't you in uniform?"
     
-    show mc uniform with vpunch
+    show apple # uniform with vpunch
 
     n "In one swift motion, the ram slides a fluffy hood with sheep ears over your head"
 
-    show mc bruh
+    show apple # bruh
 
     y "..."
     u "There we go! We're on a tight schedule, so hurry back."
@@ -374,7 +416,7 @@ label black_sheep:
             jump little_boy
 
 label the_master:
-    show bg masters house
+    scene bg masters house
     
     n "You walk out the door and into a garden."
     y "Huh?"
@@ -387,18 +429,18 @@ label the_master:
     y "Master of what?"
     n "There's a flicker of movement in the corner of your eye. At the entrance, a very large bee is trying to smooth out the globs of wax."
     
-    show bee silhouette
+    show bee #silhouette
     
     y "...Delivery for The Master?"
     
-    show bee happy
+    show bee #happy
     
     m "Ah, yes! That's me, master of wax. This way, please."
     n "Opening the gates, the Master flits inside, gesturing for you to follow. The mansion seems to be made entirely out of beeswax and is excellently crafted."
     n "The Master leads you to a parlour."
     m "Sorry for the mess; the weather has been swinging between hot and cold these days."
     
-    show bee sigh
+    show bee #sigh
     
     m "All these repairs have been keeping me from my art. You can leave the wool by the table."
     m "Sit, sit! Let me make you some tea."
@@ -472,7 +514,7 @@ label the_master:
             jump wool_mill  
     
 label the_dame:
-    show bg parlour
+    scene bg parlour
     $ tarts = False
     
     n "You walk out the front door and into a parlour. It's decorated red and black, with a checkered floor and velvet chairs."
@@ -485,7 +527,7 @@ label the_dame:
             y "Maybe just a little bite..."
             $ tarts = True
             
-            show mc bruh
+            show apple # bruh
 
             y "{i}(This tastes like dirt...){/i}"
         "Don't eat the tarts":
@@ -494,13 +536,13 @@ label the_dame:
     n "A voice crackles to life and echoes throughout the room."
     u "Announcing the arrival of The Dame!"
 
-    show dame neutral #slide in from right
-    show dame shocked
+    show dame #neutral #slide in from right
+    show dame #shocked
     d "Who are you? What are you doing in my house! {b}GUARDS!{/b}"
 
     menu:
         "It was an accident!":
-            show mc shocked
+            show apple # shocked
 
             y "This is a misunderstanding. I don't even know how I got here!"
             if tarts:
@@ -519,12 +561,12 @@ label the_dame:
                     d "Hmm... What an interesting concept. Let's test it."
                     n "With a snap of her fingers, two armoured guards appear and grab you by the arms. They shove you through the parlour doors, and you turn around to see nothing has changed."
 
-                    show mc bruh
+                    show apple # bruh
 
                     y ". . ."
                     d "I knew it. Guards, take her to the guillotine."
 
-                    show mc shocked
+                    show apple # shocked
 
                     y "WHAT? Wait—"
                     n "You are once again seized. Despite your struggles, you are dragged away to your doom..."
@@ -538,7 +580,7 @@ label the_dame:
                     y "{i}(Don't have to tell me twice!){/i}"
                     n "She hands you the clipboard, and you hurry to the door."
         "I'm just making a delivery!":
-            show mc shocked
+            show apple # shocked
 
             y "{cps=40}Waitwaitwait!{/cps} I'm just here to make a delivery!"
             if tarts:
@@ -552,12 +594,12 @@ label the_dame:
                 extend "Please help yourself to some tarts."
                 y "Sure, thanks."
 
-                show mc bruh
+                show apple # bruh
 
                 y "{i}(This tastes like dirt...){/i}"
                 d "Is it not to your liking?" 
 
-                show mc smile
+                show apple # smile
 
                 y "Oh no! No, it's great!"
             
@@ -565,7 +607,7 @@ label the_dame:
 
             menu:
                 "Tell the truth":
-                    show mc neutral
+                    show apple # neutral
 
                     y "It's been a weird day. I don't even know where to start..."
                     
@@ -574,12 +616,12 @@ label the_dame:
                     d "Hmm... What an interesting concept. Let's test it."
                     n "With a snap of her fingers, two armoured guards appear and grab you by the arms. They shove you through the parlour doors, and you turn around to see nothing has changed."
 
-                    show mc bruh
+                    show apple # bruh
 
                     y ". . ."
                     d "I knew it. Guards, take her to the guillotine."
 
-                    show mc shocked
+                    show apple # shocked
 
                     y "WHAT? Wait—"
                     n "You are once again seized. Despite your struggles, you are dragged away to your doom..."
@@ -588,7 +630,7 @@ label the_dame:
                 "Lie":
                     y "Well, the front door was unlocked. I somehow ended up here while looking for you."
 
-                    show dame frown
+                    show dame #frown
 
                     d "Looks like somebody isn't doing their job. Unacceptable. I'll have to look into it later."
                     n "You shake the bag of wool in your hand and pass her your clipboard."
@@ -607,9 +649,10 @@ label the_dame:
         jump wool_mill      
 
 label little_boy:
-    show bg treehouse
+    scene bg treehouse
 
     n "You step out the door and onto the balcony of a treehouse. From there, you can see the wool factory a hop, skip, and twirl away down the lane."
+    show boy
     n "Under the shade of leaves sits a little boy at a picnic table. An assortment of finger foods is spread out before him."
     n "The table is set for three other guests, each with their own teacup and saucer."
     y "Wool delivery!"
@@ -627,7 +670,7 @@ label little_boy:
             y "{i}(This tea is still hot...){/i}"
             y "What's your name?"
             
-            show boy sad
+            show boy #sad
             
             b "I... can't remember. I woke up one day, and I was here. All I knew was that I was waiting for someone to join me..."
             b "{cps=15}Someone like you.{/cps}"
@@ -635,18 +678,18 @@ label little_boy:
             b "Weeks... months... years. I lost track a long time ago."
             b "{cps=30}But now that you're here, {w=1.0} it doesn't matter anymore.{/cps}"
             
-            show mc shocked
+            show apple # shocked
             
             y "What? What about your other guests?"
             b "Anyone would do, as long as I could find someone to replace me."
             
-            show boy happy
+            show boy #happy
             
             b "Thank you."
             n "The boy stands up from the table. You try to follow, but are stuck to your seat."
             
             with hpunch
-            show mc angry
+            show apple # angry
             
             y "What is this? Let me go!"
             b "Sorry for tricking you, and thank you for setting me free." #fade out
@@ -660,7 +703,7 @@ label little_boy:
     y "{i}(If the tea is cold like he says it is, there shouldn't be any steam. Something feels off...){/i}"
     y "As much as I'd like to, I really should be heading back now."
     
-    show boy sad
+    show boy #sad
     
     b "Just for a little bit? No one else has shown up."
     y "I'm really sorry, but I need to go."
@@ -683,11 +726,11 @@ label little_boy:
         jump wool_mill            
 
 label wool_mill:
-    show bg wool mill
+    scene bg wool mill
     
     n "You find yourself back at the wool mill, ready to report back. Mr Ramsey looks up from his station and calls out to you."
     
-    show ramsey neutral
+    show ramsey #neutral
     
     r "Good work. Grab me a new pair of shears from the back, would you?"
     
@@ -700,7 +743,7 @@ label wool_mill:
 
 label true_ending:
     n "Digging into your pockets, you feel two keys clink together and pull them out. With the bone key and Mr Ramsey’s key in hand, you approach the final door."
-    show cat smile
+    show cheshire smile
     c "Congratulations. Are you ready to unlock it?"
     menu:
         "Ready.":
@@ -712,7 +755,7 @@ label true_ending:
     n "{cps=40}{i}Click.{/i}{/cps}" #(animate door opening). 
     n "Only darkness lies beyond the door, silent and still."
     c "What reality will you wish for?"
-    show mc determined
+    show apple # determined
     y "One where I’m the best dancer to ever live. I {i}will{/i} win that competition, and I’m gonna blow everyone’s socks off."
     y "…And a reality where there’s a little bit of magic all around."
 
