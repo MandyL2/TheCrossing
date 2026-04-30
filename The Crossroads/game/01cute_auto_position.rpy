@@ -32,7 +32,7 @@
 
 ## Character sprites that will be auto position'd.
 ## Put your sprites here, the image name.
-define AUTO_SPRITES = ["bopeep", "ramsey",  "dame", "boy"]
+define AUTO_SPRITES = ["bopeep", "ramsey", "dame", "boy"]
 
 ## You can make the spacing between them more or less.
 define AUTO_XTRASPACING = 0

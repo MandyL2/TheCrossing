@@ -9,17 +9,11 @@ image side apple = LayeredImageProxy("apple")
 define n = Character('') #narration
 define u = Character('???') #unknown 
 define c = Character('Cheshire', image="cheshire")
-# image cheshire_cat = "cheshire" 
-define r = Character('Ramsey')
-# image ramsey = "images/ram/ram.png"
-define m = Character('The Master')
-# image bee = "images/master/master.png"
-define d = Character('The Dame')
-# image dame = "images/dame/dame.png"
-define b = Character('Little Boy')
-# image boy = "images/boy/boy.png"
+define r = Character('Ramsey', image='ramsey')
+define m = Character('The Master', image="bee")
+define d = Character('The Dame', image="dame")
+define b = Character('Little Boy', image="boy")
 define p = Character('Bo Peep', image="bopeep")
-# image bopeep = "bopeep"
 
 transform double_size:
     # ypos 2.0
@@ -120,39 +114,33 @@ label stay_and_practice:
     n "A sharp smile (or was it two?) spins before your eyes as you try to regain your bearings. The smile sits high above the doorframe at the end of the hall."
     n "Slowly, a yellow pair of eyes appears, followed by a set of pointed ears, massive paws, and finally a tail. A large blue cat marked with swirling patterns grins at you as it flicks its tail in amusement."
 
-    show cheshire at truecenter 
+    show cheshire eneutral noears nomouth at truecenter with dissolve 
+    show cheshire body      eaneutral mgrin with dissolve
 
     y bneutral eneutral mopen "I know you. You're the Cheshire cat, right? The one from Wonderland?"
 
-    show cheshire eamad emad mfrown
-
-    c "Not {i}the{/i} Cheshire cat, but {i}a{/i} Cheshire cat. How could you mistake us? We’re not even the same colour."
+    c eamad emad mfrown "Not {i}the{/i} Cheshire cat, but {i}a{/i} Cheshire cat. How could you mistake us? We’re not even the same colour."
     y braised eclosed "Sorry, you’re right. Your fur is a much nicer colour. What's your name?"
 
-    show cheshire eaneutral enarrow
-    c "Cats don't have names."
+    c eaneutral enarrow "Cats don't have names."
     y eneutral "No?"
     c "No."
     y bsad "Okaaay, well I'm Apple. What is this place?"
 
-    show cheshire eneutral mgrin
-    c "This is The Crossroads. A place that is neither here nor there."
-    show cheshire enarrow
-    c "Many have come seeking something: to make deals, an escape, an adventure. The doors are never the same, all except for this one."
+    c eneutral mgrin "This is The Crossroads. A place that is neither here nor there."
+    c enarrow "Many have come seeking something: to make deals, an escape, an adventure. The doors are never the same, all except for this one."
 
     # show final door
 
     y mmumble "Is that the exit? I really need to go home and practice."
     extend mshout "I have a dance competition tomorrow!"
-    show cheshire eamad mfrown
-    c "It is said that those who unlock this door can walk into a reality of their choosing."
-    show cheshire eaneutral mgrin
-    c "It grants wishes, in a way."
+    c eamad mfrown "It is said that those who unlock this door can walk into a reality of their choosing."
+    c eaneutral mgrin "It grants wishes, in a way."
     y braised mmumble "And where would I be able to find the keys?"
-    show cheshire enarrow
-    c "Take a look around and you might just find them... If you survive long enough."
+    c enarrow "Take a look around and you might just find them... If you survive long enough."
     
-    hide cheshire #smile #fade out 
+    show cheshire -body noears nomouth with dissolve 
+    hide cheshire with dissolve
 
     y bmad eside mfrown "Well that was helpful."
 
@@ -254,49 +242,34 @@ label little_bo_peep:
     show bopeep bsad eclosed mneutral
     u "They don't like that. Would {i}you{/i} like it if someone ripped off one of your limbs?"
     y eclosed mneutral "..."
-
-    show bopeep bneutral eneutral mneutral
-    p "I'm Bo Peep."
+    p bneutral eneutral mneutral "I'm Bo Peep."
     n "You drop the apple and roll it to the base of the tree."
     y mopen "...Sorry, I was a little hungry."
-
-    show bopeep bsad esquint msad
-    p "Oh, my poor sheep. They must be getting hungry, too! I was supposed to take care of them—"
-    show bopeep esad mshout
-    p "where have they gone!"
+    p bsad esquint msad "Oh, my poor sheep. They must be getting hungry, too! I was supposed to take care of them—"
+    p esad mshout "where have they gone!"
     y eneutral mmumble"Don't you ever take time for yourself? Who takes care of you?"
-    show bopeep msad
-    p "The sheep always come first."
-
+    p msad "The sheep always come first."
     y bmad mfrown "That won’t do! You’ve got to relax a bit first, then I’ll help you look for your sheep."
     y mneutral "Follow my lead."
     n "You take Bo Peep's hand and twirl her a few times, her dress fanning out around her."
     
-    show bopeep bhappy eclosed msmile
-    p "Hehe!"    
+    
+    p bhappy eclosed msmile "Hehe!"    
     y bhappy eclosed mwidesmile "Now that we’ve loosened up a bit, let’s get started. First, you do this…"
     n "Striking a pose, you look at Bo Peep to follow. After teaching her the steps, you begin to count."
     y eneutral mopen "One, two, three, four..."
-
-    show bopeep eneutral
-    p "How are we supposed to dance without music?"
+    p eneutral "How are we supposed to dance without music?"
     y bneutral eside mfrown "Hmmm..."
     y bhappy eshocked mwidesmile "!"
     y eclosed mneutral "Hmm hm..."
     n "Bo Peep picks up your tune, and the two of you twirl and dance until the sun sets."
     
     with fade
-    show bopeep bhappy eclosed msmile
-    p "That was the most fun I've had in a while!"
-   
-    show bopeep bneutral eneutral mneutral
-    p "Thank you."
+    p bhappy eclosed msmile "That was the most fun I've had in a while!"
+    p bneutral eneutral mneutral "Thank you."
     n "Just then, round shapes appear on the horizon. As the blobs get closer, you realize it is a herd of sheep."
-    
-    show bopeep bhappy eclosed msmile
-    p "They're back!!!"
-    show bopeep mneutral
-    p "I guess you guys have found something else to eat, huh? "
+    p bhappy eclosed msmile "They're back!!!"
+    p mneutral "I guess you guys have found something else to eat, huh? "
     extend show bopeep esquint "{cps=25}I almost had a yummy treat for you.{/cps}"
     extend show bopeep eclosed msmile " This is my new friend Apple! Let’s get you guys back home."
     hide bopeep
@@ -377,37 +350,37 @@ label black_sheep:
     show ramsey with vpunch
 
     u "Goodness! Late {i}and{/i} clumsy! We’ve got a busy day ahead of us, special delivery orders and a new batch of wool just came in for processing."
-    y "Wha—"
-    n "The ram shoves a clipboard and three bags full of wool into your arms before ushering you towards the door."
+    y braised eshocked mmumble "Wha—"
+    n "The ram shoves three bags full of wool into your arms before ushering you towards the door."
+    show ramsey sideclosed
     u "Now, there’s The Master, The Dame, and The Little Boy who lives down the lane."
+    show ramsey sideopen 
     u "Don’t forget to make them sign for the delivery. We’ve been getting complaints lately about customers not receiving their orders."
-    y "But I—"
+    y bsad eneutral "But I—"
     u "Shush!"
     
-    show ramsey #stare
+    show ramsey front frontopen
     
     u "{cps=5}...{/cps}{cps=20}Something looks off.{/cps}"
     y "That's what I've been trying to tell you—"
     u "Ah! Why aren't you in uniform?"
-    
-    show apple # uniform with vpunch
 
-    n "In one swift motion, the ram slides a fluffy hood with sheep ears over your head"
+    n "In one swift motion, the ram slides a fluffy hood with sheep ears over your head" with vpunch
 
-    show apple # bruh
-
-    y "..."
+    y noeffect hat bruh "..."
+    show ramsey frontclosed
     u "There we go! We're on a tight schedule, so hurry back."
-    n "And with that, the ram shoves you through the door into the main entrance, shutting it behind you and leaving you bewildered."
+    n "And with that, the ram hands you his clipboard and shoves you through the door into the main entrance, shutting it behind you and leaving you bewildered."
+    hide ramsey
     n "You pound on the door to no avail."
     
     with hpunch
     
-    y "Hey! You've got the wrong person!"
+    y hat bmad eneutral mshout normal"Hey! You've got the wrong person!"
     n "You give in and sigh. Luckily, the clipboard contains all the information you need."
 
     menu:
-        y "Let's just get this over with... Who should I deliver to first?"
+        y eside mfrown "Let's just get this over with... Who should I deliver to first?"
         "The Master":
             jump the_master
         "The Dame":
@@ -419,33 +392,29 @@ label the_master:
     scene bg masters house
     
     n "You walk out the door and into a garden."
-    y "Huh?"
+    y braised mmumble "Huh?"
     n "Swivelling around, you look back at the door you came out of and see a small shed."
     y "Uhh, okay..."
     n "The garden is filled with drooping flowers. Upon closer inspection, you realize the flowers are lifelike wax sculptures partially melted by the sun."
     n "Connected to the garden is a large mansion, its full height diminished by melted rooftops. The walls are streaked with dried globs of wax."
     n "Circling around to the front of the mansion, you spot a plaque in the melted remains of what looks like a mailbox."
     centered "The Master"
-    y "Master of what?"
+    y eside mfrown "Master of what?"
     n "There's a flicker of movement in the corner of your eye. At the entrance, a very large bee is trying to smooth out the globs of wax."
     
-    show bee #silhouette
+    show bee silhouette
     
-    y "...Delivery for The Master?"
+    y eneutral mopen "...Delivery for The Master?"
     
-    show bee #happy
-    
-    m "Ah, yes! That's me, master of wax. This way, please."
+    m wings base greet aalert "Ah, yes! That's me, master of wax. This way, please."
     n "Opening the gates, the Master flits inside, gesturing for you to follow. The mansion seems to be made entirely out of beeswax and is excellently crafted."
     n "The Master leads you to a parlour."
-    m "Sorry for the mess; the weather has been swinging between hot and cold these days."
-    
-    show bee #sigh
-    
-    m "All these repairs have been keeping me from my art. You can leave the wool by the table."
-    m "Sit, sit! Let me make you some tea."
-    y "Oh no, that's okay—"
+    m aweird "Sorry for the mess; the weather has been swinging between hot and cold these days."
+    m adroop "All these repairs have been keeping me from my art. You can leave the wool by the table."
+    m aalert "Sit, sit! Let me make you some tea."
+    y bsad eclosed "Oh no, that's okay—"
     m "Nonsense! It's the least I can do. I'll be right back!"
+    hide bee
     n "And with that, The Master flits off again, leaving you alone."
     n "The parlour is quite humble, with few furnishings."
     n "As you are inspecting one of the bookshelves, a chilling sensation brushes against your right side, emanating from a room in the corner. The door is partially open."
@@ -454,58 +423,59 @@ label the_master:
     menu:
         "Check it out":
             show bg workroom
-            "You push the door open to find a small workroom, containing partially melted wax statues of three small children."
-            "Their expressions are an assortment of shock and fear. The tops of their heads are slightly melted, and you notice strands of hair sticking out from each of them."
-            "A chill runs down your spine, and it’s not because of the AC."
-            "The Master’s buzzing voice grows louder as they approach the parlour room, talking aloud. You hurry back to your seat."
-            "The Master returns with a tray of tea and honeycombs."
+            n "You push the door open to find a small workroom, containing partially melted wax statues of three small children."
+            n "Their expressions are an assortment of shock and fear. The tops of their heads are slightly melted, and you notice strands of hair sticking out from each of them."
+            n "A chill runs down your spine, and it’s not because of the AC."
+            y eshocked mmumble ""
+            n "The Master’s buzzing voice grows louder as they approach the parlour room, talking aloud. You hurry back to your seat."
+            n "The Master returns with a tray of tea and honeycombs."
         "Stay":
             "After a few minutes, The Master returns with a tray of tea and honeycombs."
-
-    m "Sorry for the wait! Have some tea."
+    show bee
+    m wings armback aneutral tray holdtray "Sorry for the wait! Have some tea."
 
     menu:
-        y "Oh..."
+        y bneutral eneutral mneutral "Oh..."
         "Drink the tea":
             $ bee_bad_end = True
         "Decline the tea":
             pass
 
-    m "While you're here, let me show you my latest project! It's actually about humans."
+    m aalert "While you're here, let me show you my latest project! It's actually about humans."
 
     show bg workroom
 
-    y "These are... very expressive. And realistic. You really are a master of your craft."
-    m "Well, I'm still working on my human sculpting skills. It helps to have good models."
+    y eshocked mfrown "These are... very expressive. And realistic. You really are a master of your craft."
+    m aweird "Well, I'm still working on my human sculpting skills. It helps to have good models."
     m "...You would make an excellent subject. Are you interested in modelling?"
 
     if bee_bad_end:
-        y "Not really..."
+        y braised eclosed mneutral "Not really..."
         n "You try to back up but feel dizzy. Your legs give out, and the last thing you see before darkness closes over you is The Master's serene smile."
-        
+        show bee aneutral 
         with fade
        
-        y "What the... Is this wax?"
+        y bsad eneutral mmumble "What the... Is this wax?"
         
         with hpunch
         
-        y "I can't move..."
-        m "Ah, you're awake! So sorry, but you really are too good of a model to pass up."
-        m "{cps=15}But don't worry, this won't hurt.{/cps} {cps=8}Soon you won't feel anything...{/cps}"
+        y bmad mfrown "I can't move..."
+        m aalert "Ah, you're awake! So sorry, but you really are too good of a model to pass up."
+        m aweird "{cps=15}But don't worry, this won't hurt.{/cps} {cps=8}Soon you won't feel anything...{/cps}"
         n "The Master adds one last piece of wax over your face, sealing your fate."
         centered "{b}{i}BAD END{/i}{/b}"
         return
     else:
         "You back up slowly." #zoom out screen
-        y "Maybe another time, I still have deliveries to make. The Ram is waiting for me. Please sign here."
-        m "The Ram? Oh, you must mean Mr Ramsey."
-        m "That's a shame..."
+        y braised eclosed mneutral "Maybe another time, I still have deliveries to make. The Ram is waiting for me. Please sign here."
+        m aneutral "The Ram? Oh, you must mean Mr Ramsey."
+        m adroop "That's a shame..."
         n "After taking the clipboard back, you decide to show yourself out."
         $ bee_delivered = True
 
         if boy_delivered == False or dame_delivered == False:
             menu:
-                y "Who should I deliver to next?"
+                y bneutral eside mmumble "Who should I deliver to next?"
                 "The Little Boy" if boy_delivered == False:
                     jump little_boy
                 "The Dame" if dame_delivered == False:
@@ -516,20 +486,18 @@ label the_master:
 label the_dame:
     scene bg parlour
     $ tarts = False
-    
+
     n "You walk out the front door and into a parlour. It's decorated red and black, with a checkered floor and velvet chairs."
     n "Sunlight streams in through the heavy black curtains parted in two, illuminating the room. Decorating the walls are framed paintings of a regal-looking woman, most likely the lady of the house."
     n "On the coffee table is a tray of tarts."
 
     menu:
-        y "Ooh..."
+        y hat "Ooh..."
         "Eat the tarts":
-            y "Maybe just a little bite..."
+            y eside "Maybe just a little bite..."
             $ tarts = True
-            
-            show apple # bruh
 
-            y "{i}(This tastes like dirt...){/i}"
+            y hat noeffect bruh "{i}(This tastes like dirt...){/i}"
         "Don't eat the tarts":
             pass
 
@@ -537,110 +505,95 @@ label the_dame:
     u "Announcing the arrival of The Dame!"
 
     show dame #neutral #slide in from right
-    show dame #shocked
-    d "Who are you? What are you doing in my house! {b}GUARDS!{/b}"
+    d bshocked eshocked mopen "Who are you? What are you doing in my house! "
+    extend bmad "{b}GUARDS!{/b}"
 
     menu:
         "It was an accident!":
-            show apple # shocked
 
-            y "This is a misunderstanding. I don't even know how I got here!"
+            y normal bhappy eshocked mshout "This is a misunderstanding. I don't even know how I got here!"
             if tarts:
                 d "Liar! You ate my tarts. You must be a thief in disguise!"
             else:
-                d "What, are you telling me you just teleported in here?"
+                d braised enarrow msmirk flat "What, are you telling me you just teleported in here?"
 
             menu:
                 "Tell the truth":
-                    y "Kinda? It's been a weird day."
-                    d "Absolutely ridiculous."
-                    y "It's true! Let me explain..."
+                    if tarts:
+                        y eneutral mmumble "Wait, let me explain..."
+                    else:
+                        y braised eneutral mopen "Kinda? It's been a weird day."
+                        d bmad eneutral mfrown curl "Absolutely ridiculous."
+                        y bsad mshout "It's true! Let me explain..."
 
                     with fade
 
-                    d "Hmm... What an interesting concept. Let's test it."
+                    d bneutral enarrow mneutral "Hmm... What an interesting concept. Let's test it."
                     n "With a snap of her fingers, two armoured guards appear and grab you by the arms. They shove you through the parlour doors, and you turn around to see nothing has changed."
 
-                    show apple # bruh
+                    y noeffect bruh ". . ."
+                    d msmirk "I knew it. Guards, take her to the guillotine."
 
-                    y ". . ."
-                    d "I knew it. Guards, take her to the guillotine."
-
-                    show apple # shocked
-
-                    y "WHAT? Wait—"
+                    y normal bsad eshocked mshout "WHAT? Wait—"
                     n "You are once again seized. Despite your struggles, you are dragged away to your doom..."
                     centered "{b}{i}BAD END{/i}{/b}"
                     return
                 "Lie":
-                    y "Well, no. The front door was unlocked and I somehow ended up here while looking for you."
+                    y braised eside mopen "Well, no. The front door was unlocked and I somehow ended up here while looking for you."
                     n "You shake the bag of wool in your hand and pass her your clipboard."
-                    y "If you could just sign beside your name, I'll get out of your hair at once."
+                    y msad eclosed "If you could just sign beside your name, I'll get out of your hair at once."
                     d "...Fine. Begone."
-                    y "{i}(Don't have to tell me twice!){/i}"
+                    y bsad eside mneutral "{i}(Don't have to tell me twice!){/i}"
                     n "She hands you the clipboard, and you hurry to the door."
         "I'm just making a delivery!":
-            show apple # shocked
-
-            y "{cps=40}Waitwaitwait!{/cps} I'm just here to make a delivery!"
+            y normal bhappy eshocked mshout "{cps=40}Waitwaitwait!{/cps} I'm just here to make a delivery!"
             if tarts:
                 d "Liar! You ate my tarts. You must be a thief in disguise!"
             else:
-                d "Prove it then!"
+                d flat braised enarrow "Prove it then!"
 
-            y "I've got your wool right here! And I'm definitely not wearing this hat for fun."
-            d "Hmm, that {i}is{/i} Mr Ramsey’s uniform. I think it’s quite cute. I apologize for the accusation. "
+            y bsad eneutral "I've got your wool right here! "
+            extend  mmumble "And I'm definitely not wearing this hat for fun."
+            d curl bneutral eneutral mfrown "Hmm, that {i}is{/i} Mr Ramsey’s uniform. " 
+            extend mneutral "I think it’s quite cute. I apologize for the accusation. "
             if tarts == False:
                 extend "Please help yourself to some tarts."
-                y "Sure, thanks."
+                y bhappy eclosed mneutral "Sure, thanks."
 
-                show apple # bruh
+                y noeffect bruh "{i}(This tastes like dirt...){/i}"
+                d braised enarrow "Is it not to your liking?" 
 
-                y "{i}(This tastes like dirt...){/i}"
-                d "Is it not to your liking?" 
-
-                show apple # smile
-
-                y "Oh no! No, it's great!"
+                y normal bsad eclosed mgrin "Oh no! No, it's great!"
             
-            d "How did you get in here?"
+            d flat eneutral mopen "How did you get in here?"
 
             menu:
                 "Tell the truth":
-                    show apple # neutral
-
-                    y "It's been a weird day. I don't even know where to start..."
+                    y braised eside mmumble "It's been a weird day. I don't even know where to start..."
                     
                     with fade
 
-                    d "Hmm... What an interesting concept. Let's test it."
+                    d curl bneutral enarrow mneutral "Hmm... What an interesting concept. Let's test it."
                     n "With a snap of her fingers, two armoured guards appear and grab you by the arms. They shove you through the parlour doors, and you turn around to see nothing has changed."
 
-                    show apple # bruh
+                    y noeffect bruh ". . ."
+                    d flat msmirk "I knew it. Guards, take her to the guillotine."
 
-                    y ". . ."
-                    d "I knew it. Guards, take her to the guillotine."
-
-                    show apple # shocked
-
-                    y "WHAT? Wait—"
+                    y normal bsad eshocked mshout "WHAT? Wait—"
                     n "You are once again seized. Despite your struggles, you are dragged away to your doom..."
                     centered "{b}{i}BAD END{/i}{/b}"
                     return
                 "Lie":
-                    y "Well, the front door was unlocked. I somehow ended up here while looking for you."
-
-                    show dame #frown
-
-                    d "Looks like somebody isn't doing their job. Unacceptable. I'll have to look into it later."
+                    y bsad eside mopen "Well, the front door was unlocked. I somehow ended up here while looking for you."
+                    d curl bmad enarrow mfrown "Looks like somebody isn't doing their job. Unacceptable. I'll have to look into it later."
                     n "You shake the bag of wool in your hand and pass her your clipboard."
-                    y "Riiight. Before you do that, if you could just sign beside your name, I'll get out of your hair at once."
-                    d "...Alright."
+                    y eneutral "Riiight. Before you do that, if you could just sign beside your name, I'll get out of your hair at once."
+                    d bneutral "...Alright."
                     n "She hands you the clipboard, and you hurry to the door."
     $ dame_delivered = True
     if bee_delivered == False or boy_delivered == False:
         menu:
-            y "Who should I deliver to next?"
+            y bneutral eside mmumble "Who should I deliver to next?"
             "The Master" if bee_delivered == False:
                 jump the_master
             "The Little Boy" if boy_delivered == False:
@@ -657,8 +610,8 @@ label little_boy:
     n "The table is set for three other guests, each with their own teacup and saucer."
     y "Wool delivery!"
     n "You set the bag of wool down by the table and hand the boy your clipboard. He wordlessly signs before asking:"
-    b "Would you like to stay for some tea? I'm afraid it's a little cold, though."
-    b "We were supposed to have a tea party today, but it seems my guests are running late."
+    b eclosed mopen "Would you like to stay for some tea? I'm afraid it's a little cold, though."
+    b bsad esad mfrown "We were supposed to have a tea party today, but it seems my guests are running late."
     # Flicker boy sprite
     n "You look at the carefully arranged food, completely untouched, and the empty seats. You should be getting back to your task, but the boy’s hopeful expression makes you feel a twinge of pity."
     n "Glancing at the fancy teapot, you see a wisp of steam curl out of the spout."
@@ -667,32 +620,29 @@ label little_boy:
         "Join the tea party":
             n "You take a seat across from the boy and fill your plate with snacks, then pick up a teacup. He grins at you as you silently hold it out for him to fill."
             #water pouring sfx
-            y "{i}(This tea is still hot...){/i}"
-            y "What's your name?"
+            y eside mmumble "{i}(This tea is still hot...){/i}"
+            y eneutral mopen "What's your name?"
             
-            show boy #sad
+            # show boy #sad
             
             b "I... can't remember. I woke up one day, and I was here. All I knew was that I was waiting for someone to join me..."
-            b "{cps=15}Someone like you.{/cps}"
-            y "And how long have you been waiting here?"
-            b "Weeks... months... years. I lost track a long time ago."
-            b "{cps=30}But now that you're here, {w=1.0} it doesn't matter anymore.{/cps}"
+            b bangry eneutral mneutral "{cps=15}Someone like you.{/cps}"
+            y braised "And how long have you been waiting here?"
+            b esad mfrown "Weeks... months... years. I lost track a long time ago."
+            b eneutral "{cps=30}But now that you're here," 
+            extend mneutral "it doesn't matter anymore.{/cps}"
             
-            show apple # shocked
-            
-            y "What? What about your other guests?"
+            y mmumble "What? What about your other guests?"
             b "Anyone would do, as long as I could find someone to replace me."
             
-            show boy #happy
-            
-            b "Thank you."
+            b eclosed "Thank you."
             n "The boy stands up from the table. You try to follow, but are stuck to your seat."
             
             with hpunch
-            show apple # angry
             
-            y "What is this? Let me go!"
-            b "Sorry for tricking you, and thank you for setting me free." #fade out
+            y bmad eshocked mshout "What is this? Let me go!"
+            b "Sorry for tricking you, and thank you for setting me free." 
+            hide boy with dissolve
             n "As the cold realization sets in that you are trapped here until someone else can replace you, the table turns pristine once again."
             n "Waiting."
             centered "{b}{i}BAD END{/i}{/b}"
@@ -700,19 +650,19 @@ label little_boy:
         "Head back":
             pass 
         
-    y "{i}(If the tea is cold like he says it is, there shouldn't be any steam. Something feels off...){/i}"
-    y "As much as I'd like to, I really should be heading back now."
+    y eside mfrown "{i}(If the tea is cold like he says it is, there shouldn't be any steam. Something feels off...){/i}"
+    y bsad eclosed mopen "As much as I'd like to, I really should be heading back now."
     
     show boy #sad
     
-    b "Just for a little bit? No one else has shown up."
+    b eneutral "Just for a little bit? No one else has shown up."
     y "I'm really sorry, but I need to go."
     n "You begin to turn away from the table, but whip back when you hear the boy screech behind you—"
-    b "PLEASE! I'VE BEEN HERE FOR {i}SO LONG!{/i} {cps=18}{size=+10}{b}I JUST NEED SOMEONE TO TAKE MY PLACE.{/b}{/size}{/cps}"  with hpunch
+    b crazy ecrazy mshout bsad "PLEASE! I'VE BEEN HERE FOR {i}SO LONG!{/i} {cps=18}{size=+10}{b}I JUST NEED SOMEONE TO TAKE MY PLACE.{/b}{/size}{/cps}"  with hpunch
     #flicker sprite
     y "Yeahh... Time to get out of here."
     n "You hurry to the balcony door while the boy continues to cry and screech."
-    b "COME BACK! {size=+10}{b}{cps=15}COME... BACK...{/cps}{/b}{/size}"
+    b bangry "COME BACK! {size=+10}{b}{cps=15}COME... BACK...{/cps}{/b}{/size}"
     $ boy_delivered = True
     # TODO: optimize delivery choice structure
     if bee_delivered == False or dame_delivered == False:
