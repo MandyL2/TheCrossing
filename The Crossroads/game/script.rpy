@@ -27,6 +27,7 @@ default boy_delivered = False
 default p_inspected = False
 default b_inspected = False
 default keys = 0
+default selectedDoor = 0
 # Camera flash - quickly fades to white, then back to the scene.
 define flash = Fade(0.1, 0.0, 0.5, color="#fff")
 define flash_then_shake = MultipleTransition(flash, 0.25, vpunch, 1.0)
@@ -39,7 +40,24 @@ init python:
             renpy.jump(door)
         else:
             n("No, I've already gone through this door.")
-            renpy.jump("doors")
+            renpy.call_screen("doorScene")
+
+screen doorScene():
+    imagemap:
+        ground "images/bg hallway.webp"
+    
+    imagebutton auto "images/door1_%s.webp":
+        focus_mask True
+        
+        action [SetVariable("selectedDoor", 1), ToggleScreen("doorScene"), Jump("doors")]
+
+    imagebutton auto "images/door2_%s.webp":
+        focus_mask True
+        action [SetVariable("selectedDoor", 2), ToggleScreen("doorScene"), Jump("doors")]
+
+    # imagebutton auto "images/finaldoor_%s.webp":
+    #     focus_mask True
+    #     action Jump("true_ending")
 
 # The game starts here.
 
@@ -51,7 +69,7 @@ label start:
     n "You were never that great at it, but tomorrow will be your chance to prove yourself at your first dance competition."
     n "You’re sure you’re ready, but more practice wouldn’t hurt, would it?"
 
-    show bg tennis court
+    show bg tenniscourt
 
     n "After wandering the woods behind your house, you come across an abandoned tennis court. Its net is riddled with large holes, and the lines around the court have significantly faded."
     n "It may be a little rough, but it’s still a large and flat area — a perfect stage."
@@ -115,7 +133,7 @@ label stay_and_practice:
     n "Slowly, a yellow pair of eyes appears, followed by a set of pointed ears, massive paws, and finally a tail. A large blue cat marked with swirling patterns grins at you as it flicks its tail in amusement."
 
     show cheshire eneutral noears nomouth at truecenter with dissolve 
-    show cheshire body      eaneutral mgrin with dissolve
+    show cheshire body eaneutral mgrin with dissolve
 
     y bneutral eneutral mopen "I know you. You're the Cheshire cat, right? The one from Wonderland?"
 
@@ -130,7 +148,7 @@ label stay_and_practice:
     c eneutral mgrin "This is The Crossroads. A place that is neither here nor there."
     c enarrow "Many have come seeking something: to make deals, an escape, an adventure. The doors are never the same, all except for this one."
 
-    # show final door
+    # show finaldoor_hover zoom 2.0
 
     y mmumble "Is that the exit? I really need to go home and practice."
     extend mshout "I have a dance competition tomorrow!"
@@ -152,27 +170,24 @@ label hall:
         n "You find yourself back in the hallway."
         if keys == 2:
             jump true_ending
-    jump doors
+    call screen doorScene
 
 label doors:
-    menu:
-        "Door 1":
-            $desc = ["The door on the left is white, dotted with pink polka-dots. White lace curtains hang from the doorframe, parted in the middle and tied with pink silk bows. Painted in the center of the door is a baby-blue shepherd’s crook.","Very cute, very demure."]
-            $check_keys(desc[0], desc[1], "little_bo_peep", globals()['p_inspected'])
-
-        "Door 2": 
-            $desc = ["The door on the right is a flawless steel, the colour of obsidian black that gleams in the light. In the centre of it is a silver knocker in the shape of a sheep's head. As you approach the door, your reflection in the silver pull bar warps.", "Sick knocker. But why does my reflection look fluffy..."]
-            $check_keys(desc[0], desc[1], "black_sheep", globals()['b_inspected'])
+    if selectedDoor == 1:
+        $ desc = ["The door on the left is white, dotted with pink polka-dots. White lace curtains hang from the doorframe, parted in the middle and tied with pink silk bows. Painted in the center of the door is a baby-blue shepherd’s crook.","Very cute, very demure."]
+        $ check_keys(desc[0], desc[1], "little_bo_peep", globals()['p_inspected'])
+    else:
+        $desc = ["The door on the right is a flawless steel, the colour of obsidian black that gleams in the light. In the centre of it is a silver knocker in the shape of a sheep's head. As you approach the door, your reflection in the silver pull bar warps.", "Sick knocker. But why does my reflection look fluffy..."]
+        $check_keys(desc[0], desc[1], "black_sheep", globals()['b_inspected'])
     
-
 label little_bo_peep:
-    with fade
+    scene bg black with fade
     "{cps=20}{i} Little Bo-Peep has lost her sheep {/i} 
     \n{i} and she doesn't know where to find them. {/i}{/cps}"
     "{cps=20}{i} Leave them alone, {/i}
     \n{i} and they'll come home {/i}{/cps}"
     "{cps=20}{i} wagging their tails behind them. {/cps}{/i}"
-    scene bg grass field
+    show bg grass field with fade
 
     n "A gentle breeze caresses your cheek as you open the door. Your eyes are greeted with the sight of lush green fields dotted with wild flowers."
     y "This is a great place to dance."
@@ -183,7 +198,7 @@ label little_bo_peep:
     menu:
         "Check out the house":
             $ check_house = True
-            show bg house
+            show bg cabin
             n "The house is more like a log cabin, made of deep red wood with a blue painted roof. There is a small set of stairs that leads up to a porch overlooking the fields."
             n "In the corner of the porch is a rocking chair covered in knitted quilts. You take a seat only to find that the chair is bolted to the porch, making it completely immobile."
             y bsad mfrown "What kind of psychopath does that...?"
@@ -334,8 +349,7 @@ label bp_bad_end:
     return
 
 label black_sheep:
-    scene bg wool mill 
-    with fade 
+    scene bg black with fade 
 
     n "{cps=20}{i}Baa, baa black sheep{/i} 
     \n{i}Have you any wool?{/i}{/cps}"
@@ -346,7 +360,7 @@ label black_sheep:
     \nwho lives down the lane.{/cps}{/i}"
 
     n "Stepping through the door, you run into something soft."
-
+    show bg woolmill
     show ramsey with vpunch
 
     u "Goodness! Late {i}and{/i} clumsy! We’ve got a busy day ahead of us, special delivery orders and a new batch of wool just came in for processing."
@@ -365,7 +379,7 @@ label black_sheep:
     y "That's what I've been trying to tell you—"
     u "Ah! Why aren't you in uniform?"
 
-    n "In one swift motion, the ram slides a fluffy hood with sheep ears over your head" with vpunch
+    n "In one swift motion, the ram slides a fluffy hood over your head." with vpunch
 
     y noeffect hat bruh "..."
     show ramsey frontclosed
@@ -405,8 +419,8 @@ label the_master:
     show bee silhouette
     
     y eneutral mopen "...Delivery for The Master?"
-    
-    m wings base greet aalert "Ah, yes! That's me, master of wax. This way, please."
+    show bee wings base greet aalert with dissolve
+    m  "Ah, yes! That's me, master of wax. This way, please."
     n "Opening the gates, the Master flits inside, gesturing for you to follow. The mansion seems to be made entirely out of beeswax and is excellently crafted."
     n "The Master leads you to a parlour."
     m aweird "Sorry for the mess; the weather has been swinging between hot and cold these days."
@@ -443,7 +457,7 @@ label the_master:
 
     m aalert "While you're here, let me show you my latest project! It's actually about humans."
 
-    show bg workroom
+    show bg workroom with fade
 
     y eshocked mfrown "These are... very expressive. And realistic. You really are a master of your craft."
     m aweird "Well, I'm still working on my human sculpting skills. It helps to have good models."
@@ -511,7 +525,7 @@ label the_dame:
     menu:
         "It was an accident!":
 
-            y normal bhappy eshocked mshout "This is a misunderstanding. I don't even know how I got here!"
+            y hat normal bhappy eshocked mshout "This is a misunderstanding. I don't even know how I got here!"
             if tarts:
                 d "Liar! You ate my tarts. You must be a thief in disguise!"
             else:
@@ -593,7 +607,7 @@ label the_dame:
     $ dame_delivered = True
     if bee_delivered == False or boy_delivered == False:
         menu:
-            y bneutral eside mmumble "Who should I deliver to next?"
+            y hat bneutral eside mmumble "Who should I deliver to next?"
             "The Master" if bee_delivered == False:
                 jump the_master
             "The Little Boy" if boy_delivered == False:
@@ -608,7 +622,7 @@ label little_boy:
     show boy
     n "Under the shade of leaves sits a little boy at a picnic table. An assortment of finger foods is spread out before him."
     n "The table is set for three other guests, each with their own teacup and saucer."
-    y "Wool delivery!"
+    y hat "Wool delivery!"
     n "You set the bag of wool down by the table and hand the boy your clipboard. He wordlessly signs before asking:"
     b eclosed mopen "Would you like to stay for some tea? I'm afraid it's a little cold, though."
     b bsad esad mfrown "We were supposed to have a tea party today, but it seems my guests are running late."
@@ -622,8 +636,6 @@ label little_boy:
             #water pouring sfx
             y eside mmumble "{i}(This tea is still hot...){/i}"
             y eneutral mopen "What's your name?"
-            
-            # show boy #sad
             
             b "I... can't remember. I woke up one day, and I was here. All I knew was that I was waiting for someone to join me..."
             b bangry eneutral mneutral "{cps=15}Someone like you.{/cps}"
@@ -676,7 +688,7 @@ label little_boy:
         jump wool_mill            
 
 label wool_mill:
-    scene bg wool mill
+    scene bg woolmill
     
     n "You find yourself back at the wool mill, ready to report back. Mr Ramsey looks up from his station and calls out to you."
     
@@ -684,7 +696,7 @@ label wool_mill:
     
     r "Good work. Grab me a new pair of shears from the back, would you?"
     
-    centered "obtained key"
+    call screen ram_key with Dissolve(.5)
     
     n "At the back of the mill is a door labelled “Supply Closet”. You unlock the door and step inside."
     $ keys += 1
@@ -693,7 +705,8 @@ label wool_mill:
 
 label true_ending:
     n "Digging into your pockets, you feel two keys clink together and pull them out. With the bone key and Mr Ramsey’s key in hand, you approach the final door."
-    show cheshire smile
+    show cheshire eneutral noears nomouth at truecenter with dissolve
+    show cheshire body eaneutral mgrin at truecenter with dissolve
     c "Congratulations. Are you ready to unlock it?"
     menu:
         "Ready.":
@@ -705,14 +718,13 @@ label true_ending:
     n "{cps=40}{i}Click.{/i}{/cps}" #(animate door opening). 
     n "Only darkness lies beyond the door, silent and still."
     c "What reality will you wish for?"
-    show apple # determined
-    y "One where I’m the best dancer to ever live. I {i}will{/i} win that competition, and I’m gonna blow everyone’s socks off."
-    y "…And a reality where there’s a little bit of magic all around."
+    y bmad "One where I’m the best dancer to ever live. I {i}will{/i} win that competition, and I’m gonna blow everyone’s socks off."
+    y bneutral eclosed "…And a reality where there’s a little bit of magic all around."
 
-    show bg tennis court with fade
+    scene bg tenniscourt with fade
 
     n "You wake up sprawled on your back. The sun has begun to set, casting an orange glow across the sky. Sitting up, you realize you are back on the tennis court."
-    y "Was it all a dream?"
+    y bmad eside mmumble "Was it all a dream?"
     n "You head home, thinking about that strange dream."
     n "Later that night, as you drift off to sleep, the crescent moon transforms into a sharp smile, and a pair of yellow eyes wink at you."
     centered "{b}THE END{/b}"
