@@ -70,8 +70,8 @@ layeredimage ramsey:
         attribute sideopen default
 
 layeredimage bee:
-    ypos 1.3
-    zoom 0.9
+    ypos 1.2
+    zoom 0.75
 
     
     attribute wings:

@@ -23,13 +23,39 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "1.0"
+define config.version = "2.0"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
-define gui.about = _p(""" Background assistance by {a=https://www.instagram.com/mangodrawsalot/}Annie Pham{/a}
+define gui.about = _p(""" Environment Art: {a=https://anniepham.myportfolio.com/demo-reel}Annie Pham{/a}
+
+Environment Concept Art: Annie Pham & Mandy Luu
+
+Sound Effects:
+
+{a="https://pixabay.com/users/dragon-studio-38165424/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=482893"}DRAGON-STUDIO{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=482893"}Pixabay{/a}
+
+{a="https://pixabay.com/users/estudiocoati-44388429/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=502952"}Agustín Gutiérrez{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=502952"}Pixabay{/a}
+
+{a="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=23639"}freesound_community{/a} from {a="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=23639"}Pixabay{/a}
+
+{a="https://pixabay.com/users/fronbondi_skegs-23154649/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=358690"}Gavin Mogensen{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=358690"}Pixabay{/a}
+
+{a="https://pixabay.com/users/saboteurcomics-52281254/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=405118"}charlie clark{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=405118"}Pixabay{/a}
+
+{a="https://pixabay.com/users/hums-11407411/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=21878"}hums{/a} from {a="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=21878"}Pixabay{/a}
+
+{a="https://pixabay.com/users/joentnt-47713256/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=291981"}Joen TNT{/a} from {a="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=291981"}Pixabay{/a}
+
+{a="https://pixabay.com/users/audiopapkin-14728698/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=508596"}Paweł Spychała{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=508596"}Pixabay{/a}
+
+{a="https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=184691"}floraphonic{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=184691"}Pixabay{/a}
+
+# Sound Effect by <a href="https://pixabay.com/users/fronbondi_skegs-23154649/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=258929">Gavin Mogensen</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=258929">Pixabay</a>
+
+# Sound Effect by <a href="https://pixabay.com/users/universfield-28281460/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=122256">Universfield</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=122256">Pixabay</a>
 """)
 
 
@@ -50,6 +76,9 @@ define config.has_sound = True
 define config.has_music = True
 define config.has_voice = True
 
+# define config.default_music_volume = 0.7
+# define config.default_sfx_volume = 0.7
+# define config.default_voice_volume = 0.7
 
 ## To allow the user to play a test sound on the sound or voice channel,
 ## uncomment a line below and use it to set a sample sound to play.
@@ -62,7 +91,7 @@ define config.has_voice = True
 ## the player is at the main menu. This file will continue playing into the
 ## game, until it is stopped or another file is played.
 
-# define config.main_menu_music = "main-menu-theme.ogg"
+define config.main_menu_music = "main-menu-theme.mp3"
 
 
 ## Transitions #################################################################
