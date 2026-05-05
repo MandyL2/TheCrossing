@@ -18,6 +18,9 @@ define p = Character('Bo Peep', image="bopeep")
 transform double_size:
     align(0.5, 0.5)
     zoom 2
+
+transform evening:
+    matrixcolor TintMatrix("#7FA5F2")
     
 image finaldoor = "images/finaldoor_hover.webp"
 image dooranimation:
@@ -64,15 +67,15 @@ screen doorScene():
         focus_mask True
         action [SetVariable("selectedDoor", 2), ToggleScreen("doorScene"), Jump("doors")]
 
-    # imagebutton auto "images/finaldoor_%s.webp":
-    #     focus_mask True
-    #     action Jump("true_ending")
+    imagebutton auto "images/finaldoor_%s.webp":
+        focus_mask True
+        action [SetVariable("selectedDoor", 0), ToggleScreen("doorScene"), Jump("doors")]
 
 # The game starts here.
 
 label start:
     scene bg black with fade
-    play music "spooky-bells-ambiance.wav" volume 0.6
+    play music "spooky-bells-ambiance.wav" volume 0.7
     "Tomorrow is the day. Countless hours at the studio, blood, sweat, and tears have led up to this."
     "Ever since you were a child, you’ve loved to dance. After starting middle school, you finally got your parents to sign you up for dance classes."
     "You were never that great at it, but tomorrow will be your chance to prove yourself at your first dance competition."
@@ -107,7 +110,7 @@ label stay_and_practice:
     "You’ll investigate the well on your break. But first, dance. You move back to the court and begin your routine. As you dance, you begin to feel dizzy and lose your balance."
     "Not realizing how close you are to the well, you fall right in!"
     show bg black with fade
-    play sound "eerie-wind.mp3" loop
+    play sound "eerie-wind.mp3" loop volume 0.7
     "Darkness surrounds you as you tumble through the air, spinning round and round. The fall seems to go on forever."
     y "{cps=30}How deep does this hole go...{/cps}"
     "You try to keep track of how much time has passed, but keep losing count."
@@ -120,7 +123,7 @@ label stay_and_practice:
     stop sound
     with fade
     with vpunch
-    play sound "walk-on-dirt.mp3" volume 1.5
+    play sound "walk-on-dirt.mp3" volume 2.0
 
     "You scrunch your eyes shut in anticipation, only to bounce off something and land on soft dirt."
     y bsad eclosed mfrown "Oof..."
@@ -137,7 +140,7 @@ label stay_and_practice:
 
     "As you step forward, a long and narrow hallway stretches out before you, with plain beige walls and a dark red carpet full of dirt."
     "The door slams shut behind you and vanishes."
-    play sound "door-slam.wav"
+    play sound "door-slam.wav" volume 1.0
     with hpunch
     
     u "{w}Welcome."
@@ -163,9 +166,9 @@ label stay_and_practice:
 
     # call screen finaldoor_closeup
     show door_open_1 with dissolve
-    y mmumble "Is that the exit? I really need to go home and practice."
-    hide door_open_1 with dissolve
+    y mmumble "Is that the exit? I really need to go home and practice. "
     extend mshout "I have a dance competition tomorrow!"
+    hide door_open_1 with dissolve
     c eamad mfrown "It is said that those who unlock this door can walk into a reality of their choosing."
     c eaneutral mgrin "It grants wishes, in a way."
     y braised mmumble "And where would I be able to find the keys?"
@@ -190,20 +193,23 @@ label doors:
     if selectedDoor == 1:
         $ desc = ["The door on the left is white, dotted with pink polka-dots. White lace curtains hang from the doorframe, parted in the middle and tied with pink silk bows. Painted in the center of the door is a baby-blue shepherd’s crook.","Very cute, very demure."]
         $ check_keys(desc[0], desc[1], "little_bo_peep", globals()['p_inspected'])
-    else:
+    elif selectedDoor == 2:
         $desc = ["The door on the right is a flawless steel, the colour of obsidian black that gleams in the light. In the centre of it is a silver knocker in the shape of a sheep's head. As you approach the door, your reflection in the silver pull bar warps.", "Sick knocker. But why does my reflection look fluffy..."]
         $check_keys(desc[0], desc[1], "black_sheep", globals()['b_inspected'])
+    else:
+        y "Locked... Gotta find all the keys."
+        call screen doorScene
     
 label little_bo_peep:
     scene bg black with fade
-    play music "spooky-bells-ambiance.wav" volume 0.6
+    play music "spooky-bells-ambiance.wav" volume 0.7 loop
     "{cps=20}{i} Little Bo-Peep has lost her sheep {/i} 
     \n{i} and she doesn't know where to find them. {/i}{/cps}"
     "{cps=20}{i} Leave them alone, {/i}
     \n{i} and they'll come home {/i}{/cps}"
     "{cps=20}{i} wagging their tails behind them. {/cps}{/i}"
     show bg grass_field with fade
-    play sound "grass-rustling.mp3" loop volume 0.5
+    play sound "grass-rustling.mp3" loop volume 0.7
     "A gentle breeze caresses your cheek as you open the door. Your eyes are greeted with the sight of lush green fields dotted with wild flowers."
     y "This is a great place to dance."
     "You begin to dance through the fields until you come upon a dirt path worn with hooves. From there, the path diverges."
@@ -217,12 +223,12 @@ label little_bo_peep:
             "The house is more like a log cabin, made of deep red wood with a blue painted roof. There is a small set of stairs that leads up to a porch overlooking the fields."
             "In the corner of the porch is a rocking chair covered in knitted quilts. You take a seat only to find that the chair is bolted to the porch, making it completely immobile."
             y bsad mfrown "What kind of psychopath does that...?"
-            "You get up and peek through the window. Inside is an unlit fireplace, still smouldering from being put out. "
+            "You get up and peek through the window. Inside is an unlit fireplace, collecting dust."
             "Lying before it in the center of the room is a sheepskin rug, head and all. Above the fireplace is an assortment of stuffed sheep heads."
             "Some look peaceful, while others are frozen mid-bleat, as if crying out. One in particular seems to be staring straight at you through the window."
            
-            play sound "eerie-resonant-tone.mp3" volume 0.1
-            show sheephead_board
+            play sound "eerie-resonant-tone.mp3" volume 0.2
+            show sheephead_board at truecenter
 
             y eshocked "Okay, now {i}that's{/i} psychopathic."
             hide sheephead_board
@@ -248,7 +254,7 @@ label little_bo_peep:
 
     show bopeep bsad esquint msad
 
-    "The ball of fabric uncurls to reveal the face of a young girl. Her hazel eyes glisten with tears as she peers out from underneath her pink bonnet."
+    "The ball of fabric uncurls to reveal the face of a young girl. Her hazel eyes glisten with tears as she peers out from underneath her bonnet."
     show bopeep mshout
     u "I've lost my sheep and don't know where to find them!"
     u "They're gone!" 
@@ -265,15 +271,21 @@ label little_bo_peep:
     show bopeep msad
     y eclosed mneutral "Don't worry, they can't have gone too far. Let's wait a bit; I'm sure they'll come back."
     y bhappy eneutral mopen "How about I teach you my favourite dance in the meantime? Let's go over here."
+    
     show bg grass_field with fade
+    
     "You herd the girl under the shade of some apple trees, trying to keep her spirits up."
     y eclosed "Your pretty dress might make it harder to move, so I’ll go easy on you."
     y mgrin "What’s your name? My friends call me Apple, like the fruit!"
-    play sound "scary-scream.wav" fadeout 0.5 
+    
+    play sound "scary-scream.wav" fadeout 0.5 volume 0.5
     with hpunch
+    
     "You jump up and grab an apple from a low-hanging branch. Just then, the tree makes an ear-piercing screech." 
     y bsad eshocked mshout "!!"
+    
     show bopeep bsad eclosed mneutral
+    
     u "They don't like that. Would {i}you{/i} like it if someone ripped off one of your limbs?"
     y eclosed mneutral "..."
     p bneutral eneutral mneutral "I'm Bo Peep."
@@ -286,8 +298,6 @@ label little_bo_peep:
     y bmad mfrown "That won’t do! You’ve got to relax a bit first, then I’ll help you look for your sheep."
     y mneutral "Follow my lead."
     "You take Bo Peep's hand and twirl her a few times, her dress fanning out around her."
-    
-    
     p bhappy eclosed msmile "Hehe!"    
     y bhappy eclosed mwidesmile "Now that we’ve loosened up a bit, let’s get started. First, you do this…"
     "Striking a pose, you look at Bo Peep to follow. After teaching her the steps, you begin to count."
@@ -298,15 +308,17 @@ label little_bo_peep:
     y eclosed mneutral "Hmm hm..."
     "Bo Peep picks up your tune, and the two of you twirl and dance until the sun sets."
     
+    show bg grass_field at evening
     with fade
+
     p bhappy eclosed msmile "That was the most fun I've had in a while!"
     p bneutral eneutral mneutral "Thank you."
     "Just then, round shapes appear on the horizon. As the blobs get closer, you realize it is a herd of sheep."
     p bhappy eclosed msmile "They're back!!!"
     p mneutral "I guess you guys have found something else to eat, huh? "
-    play sound "eerie-resonant-tone.mp3" volume 0.1
-    extend show bopeep esquint "{cps=25}I almost had a yummy treat for you.{/cps}"
-    extend show bopeep eclosed msmile " This is my new friend Apple! Let’s get you guys back home."
+    play sound "eerie-resonant-tone.mp3" volume 0.2
+    extend esquint "{cps=25}I almost had a yummy treat for you.{/cps}"
+    extend eclosed msmile " This is my new friend Apple! Let’s get you guys back home."
     hide bopeep
     show bg barn with fade
     "Bo Peep herds her sheep back to the barn."
@@ -348,6 +360,9 @@ label bp_bad_end:
     y bhappy eclosed mgrin "Of course! My friends call me Apple."
 
     p bhappy eclosed msmile "Thanks, Apple. Oh, let's check near those apple trees first!"
+
+    show bg grass_field
+
     y bneutral eneutral mneutral "These apples look delicious. The sheep must love eating them."
  
     p bneutral eneutral mneutral "Yes, it's always a treat for them. But ever since the Huntsman, they've developed a taste for humans."
@@ -364,9 +379,6 @@ label bp_bad_end:
     
     with vpunch
     call screen bad_end_bopeep
-    # play sound "crunch.wav"
-    # "{i} *CRUNCH* {/i}"
-    # centered "{b}{i} BAD END {/i}{/b}"
     return
 
 label black_sheep:
@@ -426,13 +438,14 @@ label black_sheep:
 
 label the_master:
     scene bg garden
-    play music "spooky-bells-ambiance.wav" volume 0.6
+    play music "spooky-bells-ambiance.wav" volume 0.7
     "You walk out the door and into a garden."
-    y braised mmumble "Huh?"
+    y hat braised mmumble "Huh?"
     "Swivelling around, you look back at the door you came out of and see a small shed."
     y "Uhh, okay..."
     "The garden is filled with drooping flowers. Upon closer inspection, you realize the flowers are lifelike wax sculptures partially melted by the sun."
     "Connected to the garden is a large mansion, its full height diminished by melted rooftops. The walls are streaked with dried globs of wax."
+    #show bg gates
     "Circling around to the front of the mansion, you spot a plaque in the melted remains of what looks like a mailbox."
     centered "The Master"
     y eside mfrown "Master of what?"
@@ -475,7 +488,7 @@ label the_master:
             "After a few minutes, The Master returns with a tray of tea and honeycombs."
     show bg bparlour
     show bee
-    play sound "eerie-resonant-tone.mp3" volume 0.1
+    play sound "eerie-resonant-tone.mp3" volume 0.2
     m wings armback aneutral tray holdtray "Sorry for the wait! Have some tea."
 
     menu:
@@ -509,13 +522,11 @@ label the_master:
         
         y bmad mfrown "I can't move..."
         m aalert "Ah, you're awake! So sorry, but you really are too good of a model to pass up."
-        play sound "eerie-resonant-tone.mp3" volume 0.1
+        play sound "eerie-resonant-tone.mp3" volume 0.2
         m aweird "{cps=15}But don't worry, this won't hurt.{/cps} {cps=8}Soon you won't feel anything...{/cps}"
         "The Master adds one last piece of wax over your face, sealing your fate."
+        
         stop music
-        # play sound "beehive-asmr.mp3" volume 0.3
-        # # centered "{b}{i}BAD END{/i}{/b}"
-        # show dooranimation
         call screen bad_end_bee
         return
     else:
@@ -541,7 +552,7 @@ label the_master:
 label the_dame:
     scene bg dparlour
     $ tarts = False
-    play music "spooky-bells-ambiance.wav" volume 0.6
+    play music "spooky-bells-ambiance.wav" volume 0.7
     "You walk out the front door and into a parlour. It's decorated red and black, with a checkered floor and velvet chairs."
     "Sunlight streams in through the heavy black curtains parted in two, illuminating the room. Decorating the walls are framed paintings of a regal-looking woman, most likely the lady of the house."
     "On the coffee table is a tray of tarts."
@@ -561,8 +572,10 @@ label the_dame:
     u "Announcing the arrival of The Dame!"
 
     show dame with moveinright #neutral #slide in from right
-    d bshocked eshocked mopen "Who are you? What are you doing in my house! "
-    extend bmad "{b}GUARDS!{/b}"
+    d "..."
+    d bshocked eshocked"!"
+    d mopen "Who are you? What are you doing in my house!"
+    d bmad "{b}GUARDS!{/b}"
 
     menu:
         "It was an accident!":
@@ -571,7 +584,7 @@ label the_dame:
             if tarts:
                 d "Liar! You ate my tarts. You must be a thief in disguise!"
             else:
-                play sound "eerie-resonant-tone.mp3" volume 0.1
+                play sound "eerie-resonant-tone.mp3" volume 0.2
                 d braised enarrow msmirk flat "What, are you telling me you just teleported in here?"
 
             menu:
@@ -586,22 +599,21 @@ label the_dame:
                     with fade
 
                     d bneutral enarrow mneutral "Hmm... What an interesting concept. Let's test it."
-                    n "With a snap of her fingers, two armoured guards appear and grab you by the arms. They shove you through the parlour doors, and you turn around to see nothing has changed."
+                    "With a snap of her fingers, two armoured guards appear and grab you by the arms. They shove you through the parlour doors, and you turn around to see nothing has changed."
 
                     y noeffect bruh ". . ."
                     d msmirk "I knew it. Guards, take her to the guillotine."
 
                     y normal bsad eshocked mshout "WHAT? Wait—"
                     "You are once again seized. Despite your struggles, you are dragged away to your doom..."
-                    # play sound "chop.mp3"
-                    # centered "{b}{i}BAD END{/i}{/b}"
+                    
                     call screen bad_end_dame(tarts)
                     return
                 "Lie":
                     y hat braised eside mopen "Well, no. The front door was unlocked and I somehow ended up here while looking for you."
                     "You shake the bag of wool in your hand and pass her your clipboard."
                     y hat msad eclosed "If you could just sign beside your name, I'll get out of your hair at once."
-                    d "...Fine. Begone."
+                    d mfrown "...Fine. Begone." #check expression
                     y bsad eside mneutral "{i}(Don't have to tell me twice!){/i}"
                     "She hands you the clipboard, and you hurry to the door."
         "I'm just making a delivery!":
@@ -640,8 +652,7 @@ label the_dame:
 
                     y normal bsad eshocked mshout "WHAT? Wait—"
                     "You are once again seized. Despite your struggles, you are dragged away to your doom..."
-                    # play sound "chop.mp3"
-                    # centered "{b}{i}BAD END{/i}{/b}"
+                
                     call screen bad_end_dame(tarts)
                     return
                 "Lie":
@@ -664,7 +675,7 @@ label the_dame:
 
 label little_boy:
     scene bg treehouse
-    play music "spooky-bells-ambiance.wav" volume 0.6
+    play music "spooky-bells-ambiance.wav" volume 0.7
     play sound "grass-rustling.mp3" volume 0.3
     "You step out the door and onto the balcony of a treehouse. From there, you can see the wool factory a hop, skip, and twirl away down the lane."
     show boy
@@ -672,7 +683,7 @@ label little_boy:
     "The table is set for three other guests, each with their own teacup and saucer."
     y hat "Wool delivery!"
     "You set the bag of wool down by the table and hand the boy your clipboard. He wordlessly signs before asking:"
-    play sound "eerie-resonant-tone.mp3" volume 0.1
+    play sound "eerie-resonant-tone.mp3" volume 0.2
     b eclosed mopen "Would you like to stay for some tea? I'm afraid it's a little cold, though."
     b bsad esad mfrown "We were supposed to have a tea party today, but it seems my guests are running late."
     # Flicker boy sprite
@@ -687,7 +698,7 @@ label little_boy:
             y eneutral mopen "What's your name?"
             
             b "I... can't remember. I woke up one day, and I was here. All I knew was that I was waiting for someone to join me..."
-            play sound "eerie-resonant-tone.mp3" volume 0.1
+            play sound "eerie-resonant-tone.mp3" volume 0.2
             b bangry eneutral mneutral "{cps=15}Someone like you.{/cps}"
             y braised "And how long have you been waiting here?"
             b esad mfrown "Weeks... months... years. I lost track a long time ago."
@@ -716,7 +727,7 @@ label little_boy:
     y eside mfrown "{i}(If the tea is cold like he says it is, there shouldn't be any steam. Something feels off...){/i}"
     y bsad eclosed mopen "As much as I'd like to, I really should be heading back now."
     
-    show boy #sad
+    # show boy #sad
     
     b eneutral "Just for a little bit? No one else has shown up."
     y "I'm really sorry, but I need to go."
@@ -745,7 +756,7 @@ label little_boy:
 label wool_mill:
     scene bg woolmill with fade
     play music "industrial_machine_tone.mp3" fadein 1.0
-    n "You find yourself back at the wool mill, ready to report back. Mr Ramsey looks up from his station and calls out to you."
+    "You find yourself back at the wool mill, ready to report back. Mr Ramsey looks up from his station and calls out to you."
     
     show ramsey #neutral
     
@@ -753,15 +764,15 @@ label wool_mill:
     
     call screen ram_key with Dissolve(.5)
     
-    "At the back of the mill is a door labelled “Supply Closet”. You unlock the door and step inside."
+    "At the back of the mill is a door labelled “Supply Closet”. You unlock the door and yank your hood off before stepping inside."
     $ keys += 1
     $ b_inspected = True
     stop music
     jump hall
 
 label true_ending:
-    play music "spooky-bells-ambiance.wav" volume 0.5
-    play sound "key-jangle.wav"
+    play music "spooky-bells-ambiance.wav" volume 0.7
+    play sound "key-jangle.wav" volume 1.0
     "Digging into your pockets, you feel two keys clink together and pull them out. With the bone key and Mr Ramsey’s key in hand, you approach the final door."
     show cheshire eneutral noears nomouth at truecenter with dissolve
     show cheshire body eaneutral mgrin at truecenter with dissolve
@@ -771,10 +782,10 @@ label true_ending:
             pass
     
     "You steel yourself before sliding the bone key into the first lock. It feels fragile in your hand, and you turn it with care."
-    play sound "door-lock.wav"
+    play sound "door-lock.wav" volume 0.8
     "{cps=40}{i}Click.{/i}{/cps}"
     "The ball of wool on the black sheep’s key tickles your hand as you insert it into the second lock and turn. "
-    play sound "door-lock.wav"
+    play sound "door-lock.wav" volume 0.8
     "{cps=40}{i}Click.{/i}{/cps}" #(animate door opening). 
     show dooranimation
     play sound "old-creaking-wooden-door.mp3"
@@ -783,8 +794,10 @@ label true_ending:
     c "What reality will you wish for?"
     y bmad "One where I’m the best dancer to ever live. I {i}will{/i} win that competition, and I’m gonna blow everyone’s socks off."
     y bneutral eclosed "…And a reality where there’s a little bit of magic all around."
+    "Taking a deep breath, you plunge into the darkness."
 
-    scene bg tenniscourt with fade
+    scene bg tenniscourt at evening
+    with fade 
 
     "You wake up sprawled on your back. The sun has begun to set, casting an orange glow across the sky. Sitting up, you realize you are back on the tennis court."
     y bmad eside mmumble "Was it all a dream?"

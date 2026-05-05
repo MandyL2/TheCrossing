@@ -1,16 +1,19 @@
 screen bone_key():
     modal True
-    on "show" action Play(channel="sound", file="key-get.wav")
+    on "show" action [Function(renpy.music.set_volume, 1.0, channel="sound"), Play(channel="sound", file="key-get.wav")] #increase volume
     imagebutton:
             background "#746e60a8"
             idle "obtained_bp_key.webp"
             xalign 0.5
             yalign 0.0
+            # zoom 0.8
             action Hide("popup_letter", Dissolve(.5)), Return(False)
 
 screen ram_key():
     modal True
-    on "show" action Play(channel="sound", file="key-get.wav")
+    on "show" action [Function(renpy.music.set_volume, 1.0, channel="sound"), Play(channel="sound", file="key-get.wav")]
+    transform:
+        zoom 0.8
     imagebutton:
         background "#746e60a8"
         idle "obtained_r_key.webp" 
@@ -27,7 +30,7 @@ screen finaldoor_closeup():
 
 screen boring_end():
     modal True
-    # on "show" action Play(channel="sound", file="beehive-asmr.mp3")
+    on "show" action Play(channel="sound", file="eerie-resonant-tone.mp3")
     imagebutton:
         idle "boring_end.webp"
         action Return()
