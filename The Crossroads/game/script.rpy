@@ -2,7 +2,7 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-
+default _game_menu_screen = "save"
 define y = Character("You", image="apple")
 image side apple = LayeredImageProxy("apple")
 
