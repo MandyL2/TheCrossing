@@ -20,7 +20,7 @@ transform double_size:
     zoom 2
 
 transform evening:
-    matrixcolor TintMatrix("#7FA5F2")
+    matrixcolor TintMatrix("#b8b0eadd")
     
 image finaldoor = "images/finaldoor.webp"
 image dooranimation:
@@ -81,7 +81,7 @@ label start:
     "You were never that great at it, but tomorrow will be your chance to prove yourself at your first dance competition."
     "You’re sure you’re ready, but more practice wouldn’t hurt, would it?"
 
-    show bg tenniscourt
+    show bg tennis_court
 
     "After wandering the woods behind your house, you come across an abandoned tennis court. Its net is riddled with large holes, and the lines around the court have significantly faded."
     "It may be a little rough, but it’s still a large and flat area — a perfect stage."
@@ -787,7 +787,7 @@ label true_ending:
     "The ball of wool on the black sheep’s key tickles your hand as you insert it into the second lock and turn. "
     play sound "door-lock.wav" volume 0.8
     "{cps=40}{i}Click.{/i}{/cps}" #(animate door opening). 
-    show dooranimation
+    # show dooranimation
     play sound "old-creaking-wooden-door.mp3"
     "You grasp the handle and pull with all your strength."
     "Only darkness lies beyond the door, silent and still."
