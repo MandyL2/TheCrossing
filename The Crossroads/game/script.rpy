@@ -22,7 +22,7 @@ transform double_size:
 transform evening:
     matrixcolor TintMatrix("#7FA5F2")
     
-image finaldoor = "images/finaldoor_hover.webp"
+image finaldoor = "images/finaldoor.webp"
 image dooranimation:
     "door_open_1.webp"
     pause 0.5
@@ -165,10 +165,10 @@ label stay_and_practice:
     c enarrow "Many have come seeking something: to make deals, an escape, an adventure. The doors are never the same, all except for this one."
 
     # call screen finaldoor_closeup
-    show door_open_1 with dissolve
+    show finaldoor with dissolve
     y mmumble "Is that the exit? I really need to go home and practice. "
     extend mshout "I have a dance competition tomorrow!"
-    hide door_open_1 with dissolve
+    hide finaldoor with dissolve
     c eamad mfrown "It is said that those who unlock this door can walk into a reality of their choosing."
     c eaneutral mgrin "It grants wishes, in a way."
     y braised mmumble "And where would I be able to find the keys?"
