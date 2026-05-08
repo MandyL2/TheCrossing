@@ -21,12 +21,13 @@ screen ram_key():
         yalign 0.0
         action Hide("popup_letter", Dissolve(.5)), Return(False)
 
-screen finaldoor_closeup():
-    modal True
-    vbox:
-        add "images/finaldoor_hover.webp" at double_size
-        align (0.5, 0.5)
-        # zoom 2.0
+screen mailbox():
+    imagebutton:
+            background "#746e60a8"
+            idle "mailbox.webp"
+            xalign 0.5
+            yalign 0.0
+            action Hide("popup_letter", Dissolve(.5)), Return(False)
 
 screen boring_end():
     modal True

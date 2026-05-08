@@ -73,7 +73,6 @@ layeredimage bee:
     ypos 1.2
     zoom 0.75
 
-    
     attribute wings:
         "bee_wings"
 

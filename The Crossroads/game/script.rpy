@@ -3,17 +3,17 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 default _game_menu_screen = "save"
-define y = Character("You", image="apple")
+define y = Character("You", image="apple", color="#B7EFFE")
 image side apple = LayeredImageProxy("apple")
 
 define n = Character('') #narration
 define u = Character('???') #unknown 
-define c = Character('Cheshire', image="cheshire")
-define r = Character('Ramsey', image='ramsey')
-define m = Character('The Master', image="bee")
-define d = Character('The Dame', image="dame")
-define b = Character('Little Boy', image="boy")
-define p = Character('Bo Peep', image="bopeep")
+define c = Character('Cheshire', image="cheshire", color="#30448B")
+define r = Character('Ramsey', image='ramsey', color="#31613E")
+define m = Character('The Master', image="bee", color="#D6AB66")
+define d = Character('The Dame', image="dame", color="#792227")
+define b = Character('Little Boy', image="boy", color="#944C33")
+define p = Character('Bo Peep', image="bopeep", color="#B57B98")
 
 transform double_size:
     align(0.5, 0.5)
@@ -21,6 +21,9 @@ transform double_size:
 
 transform evening:
     matrixcolor TintMatrix("#b8b0eadd")
+
+transform sunset: 
+    matrixcolor TintMatrix("#d2ba99dd")
     
 image finaldoor = "images/finaldoor.webp"
 image dooranimation:
@@ -47,7 +50,7 @@ default selectedDoor = 0
 init python:
     def check_keys (narr, you, door, inspected):
         if inspected == False:
-            renpy.say(n,narr)
+            renpy.say(None,narr)
             renpy.say(y,you)
             renpy.jump(door)
         else:
@@ -75,7 +78,7 @@ screen doorScene():
 
 label start:
     scene bg black with fade
-    play music "spooky-bells-ambiance.wav" volume 0.7
+    play music "spooky-bells-ambiance.wav" volume 0.8
     "Tomorrow is the day. Countless hours at the studio, blood, sweat, and tears have led up to this."
     "Ever since you were a child, you’ve loved to dance. After starting middle school, you finally got your parents to sign you up for dance classes."
     "You were never that great at it, but tomorrow will be your chance to prove yourself at your first dance competition."
@@ -145,7 +148,7 @@ label stay_and_practice:
     
     u "{w}Welcome."
     "You spin around wildly, trying to locate the source of the voice, except it comes from everywhere and nowhere, echoing through the hall. You become dizzy and fall to the ground."
-    "A sharp smile (or was it two?) spins before your eyes as you try to regain your bearings. The smile sits high above the doorframe at the end of the hall."
+    "A sharp smile (or was it two?) spins before your eyes as you try to regain your bearings. The smile sits high above the arch at the end of the hall."
     "Slowly, a yellow pair of eyes appears, followed by a set of pointed ears, massive paws, and finally a tail. A large blue cat marked with swirling patterns grins at you as it flicks its tail in amusement."
 
     show cheshire eneutral noears nomouth at truecenter with dissolve 
@@ -164,7 +167,6 @@ label stay_and_practice:
     c eneutral mgrin "This is The Crossroads. A place that is neither here nor there."
     c enarrow "Many have come seeking something: to make deals, an escape, an adventure. The doors are never the same, all except for this one."
 
-    # call screen finaldoor_closeup
     show finaldoor with dissolve
     y mmumble "Is that the exit? I really need to go home and practice. "
     extend mshout "I have a dance competition tomorrow!"
@@ -191,7 +193,7 @@ label hall:
 
 label doors:
     if selectedDoor == 1:
-        $ desc = ["The door on the left is white, dotted with pink polka-dots. White lace curtains hang from the doorframe, parted in the middle and tied with pink silk bows. Painted in the center of the door is a baby-blue shepherd’s crook.","Very cute, very demure."]
+        $ desc = ["The door on the left is a pale pink, almost white. Light purple lace curtains hang from the doorframe, parted in the middle and tied with pink silk bows. Painted in the center of the door is a shepherd’s crook.","Very cute, very demure."]
         $ check_keys(desc[0], desc[1], "little_bo_peep", globals()['p_inspected'])
     elif selectedDoor == 2:
         $desc = ["The door on the right is a flawless steel, the colour of obsidian black that gleams in the light. In the centre of it is a silver knocker in the shape of a sheep's head. As you approach the door, your reflection in the silver pull bar warps.", "Sick knocker. But why does my reflection look fluffy..."]
@@ -202,7 +204,7 @@ label doors:
     
 label little_bo_peep:
     scene bg black with fade
-    play music "spooky-bells-ambiance.wav" volume 0.7 loop
+    play music "spooky-bells-ambiance.wav" volume 0.8 loop
     "{cps=20}{i} Little Bo-Peep has lost her sheep {/i} 
     \n{i} and she doesn't know where to find them. {/i}{/cps}"
     "{cps=20}{i} Leave them alone, {/i}
@@ -220,8 +222,8 @@ label little_bo_peep:
         "Check out the house":
             $ check_house = True
             show bg cabin
-            "The house is more like a log cabin, made of deep red wood with a blue painted roof. There is a small set of stairs that leads up to a porch overlooking the fields."
-            "In the corner of the porch is a rocking chair covered in knitted quilts. You take a seat only to find that the chair is bolted to the porch, making it completely immobile."
+            "The house is more like a log cabin, made of deep red wood. There is a small set of stairs that leads up to a porch overlooking the fields."
+            "In the corner of the porch is a rocking chair. You take a seat only to find that the chair is bolted to the porch, making it completely immobile."
             y bsad mfrown "What kind of psychopath does that...?"
             "You get up and peek through the window. Inside is an unlit fireplace, collecting dust."
             "Lying before it in the center of the room is a sheepskin rug, head and all. Above the fireplace is an assortment of stuffed sheep heads."
@@ -373,7 +375,7 @@ label bp_bad_end:
     n "Bo Peep lets out a sharp whistle, and a herd of sheep rushes out of the underbrush to surround you."
  
     p bsad eclosed mneutral "Sorry!"
-    play sound "sheep-herd.mp3"
+    play sound "sheep-herd.mp3" volume 1.8
     "The sheep begin bleating loudly, overwhelming your senses."
     "As they close in on you, the last thing you see are rows of razor-sharp teeth."
     
@@ -438,7 +440,7 @@ label black_sheep:
 
 label the_master:
     scene bg garden
-    play music "spooky-bells-ambiance.wav" volume 0.7
+    play music "spooky-bells-ambiance.wav" volume 0.8
     "You walk out the door and into a garden."
     y hat braised mmumble "Huh?"
     "Swivelling around, you look back at the door you came out of and see a small shed."
@@ -447,7 +449,7 @@ label the_master:
     "Connected to the garden is a large mansion, its full height diminished by melted rooftops. The walls are streaked with dried globs of wax."
     #show bg gates
     "Circling around to the front of the mansion, you spot a plaque in the melted remains of what looks like a mailbox."
-    centered "The Master"
+    call screen mailbox
     y eside mfrown "Master of what?"
     "There's a flicker of movement in the corner of your eye. At the entrance, a very large bee is trying to smooth out the globs of wax."
     
@@ -515,11 +517,10 @@ label the_master:
         show bee aneutral:
             ease 0.5 zoom 1.0 ypos 1.2 
         with fade
-       
+        show bee -armback -tray -holdtray greet
         y bsad eneutral mmumble "What the... Is this wax?"
         
         with hpunch
-        
         y bmad mfrown "I can't move..."
         m aalert "Ah, you're awake! So sorry, but you really are too good of a model to pass up."
         play sound "eerie-resonant-tone.mp3" volume 0.2
@@ -552,9 +553,9 @@ label the_master:
 label the_dame:
     scene bg dparlour
     $ tarts = False
-    play music "spooky-bells-ambiance.wav" volume 0.7
+    play music "spooky-bells-ambiance.wav" volume 0.8
     "You walk out the front door and into a parlour. It's decorated red and black, with a checkered floor and velvet chairs."
-    "Sunlight streams in through the heavy black curtains parted in two, illuminating the room. Decorating the walls are framed paintings of a regal-looking woman, most likely the lady of the house."
+    "Sunlight streams in through the heavy black curtains parted in two, illuminating the room. Decorating the walls are mirrors of all shapes and sizes."
     "On the coffee table is a tray of tarts."
 
     menu:
@@ -571,7 +572,7 @@ label the_dame:
     "A voice crackles to life and echoes throughout the room."
     u "Announcing the arrival of The Dame!"
 
-    show dame with moveinright #neutral #slide in from right
+    show dame with moveinright 
     d "..."
     d bshocked eshocked"!"
     d mopen "Who are you? What are you doing in my house!"
@@ -613,7 +614,7 @@ label the_dame:
                     y hat braised eside mopen "Well, no. The front door was unlocked and I somehow ended up here while looking for you."
                     "You shake the bag of wool in your hand and pass her your clipboard."
                     y hat msad eclosed "If you could just sign beside your name, I'll get out of your hair at once."
-                    d mfrown "...Fine. Begone." #check expression
+                    d enarrow mfrown "...Fine. Begone." #check expression
                     y bsad eside mneutral "{i}(Don't have to tell me twice!){/i}"
                     "She hands you the clipboard, and you hurry to the door."
         "I'm just making a delivery!":
@@ -675,7 +676,7 @@ label the_dame:
 
 label little_boy:
     scene bg treehouse
-    play music "spooky-bells-ambiance.wav" volume 0.7
+    play music "spooky-bells-ambiance.wav" volume 0.8
     play sound "grass-rustling.mp3" volume 0.3
     "You step out the door and onto the balcony of a treehouse. From there, you can see the wool factory a hop, skip, and twirl away down the lane."
     show boy
@@ -726,8 +727,7 @@ label little_boy:
         
     y eside mfrown "{i}(If the tea is cold like he says it is, there shouldn't be any steam. Something feels off...){/i}"
     y bsad eclosed mopen "As much as I'd like to, I really should be heading back now."
-    
-    # show boy #sad
+
     
     b eneutral "Just for a little bit? No one else has shown up."
     y "I'm really sorry, but I need to go."
@@ -771,7 +771,7 @@ label wool_mill:
     jump hall
 
 label true_ending:
-    play music "spooky-bells-ambiance.wav" volume 0.7
+    play music "spooky-bells-ambiance.wav" volume 0.8
     play sound "key-jangle.wav" volume 1.0
     "Digging into your pockets, you feel two keys clink together and pull them out. With the bone key and Mr Ramsey’s key in hand, you approach the final door."
     show cheshire eneutral noears nomouth at truecenter with dissolve
@@ -782,10 +782,10 @@ label true_ending:
             pass
     
     "You steel yourself before sliding the bone key into the first lock. It feels fragile in your hand, and you turn it with care."
-    play sound "door-lock.wav" volume 0.8
+    play sound "door-lock.wav" volume 1.5
     "{cps=40}{i}Click.{/i}{/cps}"
     "The ball of wool on the black sheep’s key tickles your hand as you insert it into the second lock and turn. "
-    play sound "door-lock.wav" volume 0.8
+    play sound "door-lock.wav" volume 1.5
     "{cps=40}{i}Click.{/i}{/cps}" #(animate door opening). 
     # show dooranimation
     play sound "old-creaking-wooden-door.mp3"
@@ -796,14 +796,14 @@ label true_ending:
     y bneutral eclosed "…And a reality where there’s a little bit of magic all around."
     "Taking a deep breath, you plunge into the darkness."
 
-    scene bg tenniscourt at evening
+    scene bg tennis_court at sunset
     with fade 
 
     "You wake up sprawled on your back. The sun has begun to set, casting an orange glow across the sky. Sitting up, you realize you are back on the tennis court."
     y bmad eside mmumble "Was it all a dream?"
     "You head home, thinking about that strange dream."
     "Later that night, as you drift off to sleep, the crescent moon transforms into a sharp smile, and a pair of yellow eyes wink at you."
-    # centered "{b}THE END{/b}"
+
     call screen true_end
     # This ends the game.
     return

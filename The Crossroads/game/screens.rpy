@@ -255,8 +255,8 @@ screen quick_menu():
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
+            # textbutton _("Q.Save") action QuickSave()
+            # textbutton _("Q.Load") action QuickLoad()
             textbutton _("Prefs") action ShowMenu('preferences')
 
 
@@ -331,6 +331,28 @@ screen navigation():
             ## Web.
             textbutton _("Quit") action Quit(confirm=not main_menu)
 
+screen main_menu_navigation():
+
+    hbox:
+        style_prefix "navigation"
+
+        xalign 0.5
+        yalign 0.96
+
+        spacing gui.main_menu_navigation_spacing 
+
+        imagebutton auto "gui/start_%s.png" action Start()
+        imagebutton auto "gui/load_%s.png" action ShowMenu("load")
+        imagebutton auto "gui/prefs_%s.png" action ShowMenu("preferences")
+        imagebutton auto "gui/about_%s.png" action ShowMenu("about")
+
+        if renpy.variant("pc"):
+            ## The quit button is banned on iOS and unnecessary on Android and Web
+            imagebutton auto "gui/quit_%s.png" action Quit(confirm=not main_menu)
+
+        if _in_replay:
+
+            textbutton _("End Replay") action EndReplay(confirm=True)
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
@@ -362,7 +384,7 @@ screen main_menu():
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
-    use navigation
+    use main_menu_navigation
 
     if gui.show_name:
 

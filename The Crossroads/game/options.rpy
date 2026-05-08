@@ -23,39 +23,47 @@ define gui.show_name = False
 
 ## The version of the game.
 
-define config.version = "2.0"
+define config.version = "2.2"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
-define gui.about = _p(""" Environment Art: {a=https://anniepham.myportfolio.com/demo-reel}Annie Pham{/a}
+define gui.about = _p(""" 
+The Crossroads is a dark fantasy visual novel, inspired by Alice in Wonderland and Coraline.
+You play as a young girl named Apple, who falls down a well and finds herself in a mysterious hallway full of doors called The Crossroads. 
+There, she meets a Cheshire cat who hints that the only way out is through a locked door. To unlock it, she must find two keys, all while surviving the sinister scenarios that may lurk behind each door. 
 
-Environment Concept Art: Annie Pham & Mandy Luu
+Trust your gut, and choose wisely.
+
+
+Environment Art: {a=https://anniepham.myportfolio.com/demo-reel}Annie Pham{/a}
+
+Environment Concept Art: Annie Pham and Mandy Luu
 
 Sound Effects:
 
-{a="https://pixabay.com/users/dragon-studio-38165424/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=482893"}DRAGON-STUDIO{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=482893"}Pixabay{/a}
+{a=https://pixabay.com/users/dragon-studio-38165424/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=482893}DRAGON-STUDIO{/a} from {a=https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=482893}Pixabay{/a}
 
-{a="https://pixabay.com/users/estudiocoati-44388429/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=502952"}Agustín Gutiérrez{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=502952"}Pixabay{/a}
+{a=https://pixabay.com/users/estudiocoati-44388429/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=502952}Agustín Gutiérrez{/a} from {a=https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=502952}Pixabay{/a}
 
-{a="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=23639"}freesound_community{/a} from {a="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=23639"}Pixabay{/a}
+{a=https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=23639}freesound_community{/a} from {a=https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=23639}Pixabay{/a}
 
-{a="https://pixabay.com/users/fronbondi_skegs-23154649/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=358690"}Gavin Mogensen{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=358690"}Pixabay{/a}
+{a=https://pixabay.com/users/fronbondi_skegs-23154649/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=358690}Gavin Mogensen{/a} from {a=https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=358690}Pixabay{/a}
 
-{a="https://pixabay.com/users/saboteurcomics-52281254/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=405118"}charlie clark{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=405118"}Pixabay{/a}
+{a=https://pixabay.com/users/saboteurcomics-52281254/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=405118}charlie clark{/a} from {a=https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=405118}Pixabay{/a}
 
-{a="https://pixabay.com/users/hums-11407411/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=21878"}hums{/a} from {a="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=21878"}Pixabay{/a}
+{a=https://pixabay.com/users/hums-11407411/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=21878}hums{/a} from {a=https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=21878}Pixabay{/a}
 
-{a="https://pixabay.com/users/joentnt-47713256/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=291981"}Joen TNT{/a} from {a="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=291981"}Pixabay{/a}
+{a=https://pixabay.com/users/joentnt-47713256/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=291981}Joen TNT{/a} from {a=https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=291981}Pixabay{/a}
 
-{a="https://pixabay.com/users/audiopapkin-14728698/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=508596"}Paweł Spychała{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=508596"}Pixabay{/a}
+{a=https://pixabay.com/users/audiopapkin-14728698/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=508596}Paweł Spychała{/a} from {a=https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=508596}Pixabay{/a}
 
-{a="https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=184691"}floraphonic{/a} from {a="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=184691"}Pixabay{/a}
+{a=https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=184691}floraphonic{/a} from {a=https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=184691}Pixabay{/a}
 
-{a ="https://pixabay.com/users/fronbondi_skegs-23154649/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=258929}Gavin Mogensen{/a} from {a ="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=258929}Pixabay{/a}
+{a=https://pixabay.com/users/fronbondi_skegs-23154649/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=258929}Gavin Mogensen{/a} from {a=https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=258929}Pixabay{/a}
 
-{a ="https://pixabay.com/users/universfield-28281460/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=122256}Universfield{/a} from {a ="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=122256}Pixabay{/a}
+{a=https://pixabay.com/users/universfield-28281460/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=122256}Universfield{/a} from {a=https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=122256}Pixabay{/a}
 """)
 
 
@@ -63,7 +71,7 @@ Sound Effects:
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "theCrossroads"
+define build.name = "TheCrossroads"
 
 
 ## Sounds and music ############################################################
@@ -179,7 +187,7 @@ define config.save_directory = "theCrossing-1773023752"
 ##
 ## The icon displayed on the taskbar or dock.
 
-define config.window_icon = "gui/window_icon.png"
+define config.window_icon = "finaldoor.webp"
 
 
 ## Build configuration #########################################################
